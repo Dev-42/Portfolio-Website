@@ -1,24 +1,79 @@
-import { useState, useRef } from "react";
-
+import { useState, useRef, Suspense } from "react";
+import emailjs from "@emailjs/browser";
+import { Canvas } from "@react-three/fiber";
+import Loader from "../components/Loader";
+import Fox from "../Models/Fox";
+import useAlert from "../hooks/useAlert";
+import Alert from "../components/Alert";
 const Contact = () => {
   const formRef = useRef(null);
-  const [form, setForm] = useState({ name: "", email: "", message: "" });
-  const [isLoading, setisLoading] = useState(false);
+  const initialState = { name: "", email: "", message: "" };
+  const [form, setForm] = useState(initialState);
+  const [isLoading, setIsLoading] = useState(false);
+  const [currentAnimation, setCurrentAnimation] = useState("idle");
+  const { alert, showAlert, hideAlert } = useAlert();
 
   const handleChange = (e) => {
     setForm({ ...form, [e.target.name]: e.target.value });
   };
+
   const handleSubmit = (e) => {
     e.preventDefault();
-    setisLoading(true);
+    setIsLoading(true);
+    setCurrentAnimation("hit");
+    emailjs
+      .send(
+        "service_hi6na1i",
+        "template_mwqhjo3",
+        {
+          from_name: form.name,
+          to_name: "Dev",
+          from_email: form.email,
+          to_email: "devbhattacharya42@gmail.com",
+          message: form.message,
+        },
+        "Zqr1gCusW-DSXvCRM"
+      )
+      .then(() => {
+        setIsLoading(false);
+        // Show success message
+        // Hide an alert
+        showAlert({
+          show: true,
+          text: "Thank you for your message 😃",
+          type: "success",
+        });
+        setTimeout(() => {
+          hideAlert();
+          setCurrentAnimation("idle");
+          setForm(initialState); // Reset the form to initial state
+        }, [2000]);
+      })
+      .catch((e) => {
+        setIsLoading(false);
+        setCurrentAnimation("idle");
+        console.log(e);
+        // Show error message
+        showAlert({
+          show: true,
+          text: "I didnt receive your message",
+          type: "success",
+        });
+      });
+  };
+  const handleBlur = () => {
+    setCurrentAnimation("idle");
+  };
+  const handleFocus = () => {
+    setCurrentAnimation("walk");
   };
 
-  const handleFocus = () => {};
-  const handleBlur = () => {};
   return (
     <section className="relative flex lg:flex-row flex-col max-container">
+      {alert.show && <Alert {...alert} />}
+      {/* <Alert {...alert} /> */}
       <div className="flex-1 min-w-[50%] flex flex-col">
-        <h1>Get in Touch</h1>
+        <h1 className="head-text">Get in Touch</h1>
         <form
           action=""
           className="w-full flex flex-col gap-7 mt-14"
@@ -66,16 +121,24 @@ const Contact = () => {
               onBlur={handleBlur}
             />
           </label>
-          <button
-            type="submit"
-            className="btn"
-            onFocus={handleFocus}
-            onBlur={handleBlur}
-            disabled={isLoading}
-          >
+          <button type="submit" className="btn" disabled={isLoading}>
             {isLoading ? "Sending..." : "Send Message"}
           </button>
         </form>
+      </div>
+      <div className="lg:w-1/2 w-full lg:h-auto md:h-[550px] h-[350px]">
+        <Canvas camera={{ position: [0, 0, 5], fov: 75, near: 0.1, far: 1000 }}>
+          <directionalLight intensity={2.5} position={[0, 0, 1]} />
+          <ambientLight intensity={0.5} />
+          <Suspense fallback={null}>
+            <Fox
+              currentAnimation={currentAnimation}
+              position={[0.5, 0.35, 0]}
+              rotation={[12.6, -0.6, 0]}
+              scale={[0.5, 0.5, 0.5]}
+            />
+          </Suspense>
+        </Canvas>
       </div>
     </section>
   );
