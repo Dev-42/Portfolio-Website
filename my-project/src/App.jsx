@@ -6,7 +6,7 @@ import Contacts from "./pages/Contact";
 import Navbar from "./components/Navbar";
 const App = () => {
   return (
-    <main className="bg-slate-300/20">
+    <main className="bg-slate-300/20 v-[100vh]">
       <BrowserRouter>
         <Navbar />
         <Routes>
