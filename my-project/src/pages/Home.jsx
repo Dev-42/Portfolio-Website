@@ -3,7 +3,7 @@ import { Suspense, useState, useRef, useEffect } from "react";
 import { soundon, soundoff } from "../assets/icons";
 import sakura from "../assets/sakura.mp3";
 import ProfileImage from "../assets/ProfileImage.jpg"; // Replace with your image path
-import { motion, useScroll } from "framer-motion";
+import { motion } from "framer-motion";
 import Plane from "../Models/Plane";
 import Bird from "../Models/Bird";
 import Loader from "../components/Loader";
@@ -17,7 +17,6 @@ const Home = () => {
   audioRef.current.loop = true;
 
   const [isPlaying, setIsPlaying] = useState(false);
-  const { scrollYProgress } = useScroll();
 
   const particlesInit = async (engine) => {
     await loadFull(engine); // Initializes the tsParticles engine
@@ -37,11 +36,15 @@ const Home = () => {
       },
     },
     particles: {
-      number: { value: 100 },
-      size: { value: 2 },
-      move: { enable: true, speed: 1 },
-      opacity: { value: 0.5 },
-      twinkle: { particles: { enable: true, frequency: 0.05, opacity: 1 } },
+      number: { value: 150 },
+      size: { value: 3 },
+      move: { enable: true, speed: 2 },
+      opacity: { value: 0.6 },
+      color: { value: ["#00FFFF", "#FF00FF", "#FFD700", "#FF4500"] },
+      twinkle: {
+        lines: { enable: true, frequency: 0.1, opacity: 1 },
+        particles: { enable: true, frequency: 0.2, opacity: 1 },
+      },
     },
   };
 
@@ -54,7 +57,7 @@ const Home = () => {
   }, [isPlaying]);
 
   return (
-    <div className="relative w-full h-screen bg-gradient-to-b from-indigo-900 via-gray-900 to-black text-white">
+    <div className="relative w-full overflow-hidden h-screen bg-gradient-to-b from-indigo-900 via-gray-900 to-black text-white">
       {/* Twinkling Stars Background */}
       <Particles
         id="tsparticles"
@@ -84,10 +87,14 @@ const Home = () => {
         <motion.h2
           className="text-5xl font-extrabold mt-6 text-white"
           initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
+          animate={{
+            opacity: 1,
+            color: ["#FFD700", "#FF00FF", "#00FFFF", "#FFD700"],
+          }}
           transition={{
-            delay: 0.2,
-            duration: 1,
+            duration: 5,
+            repeat: Infinity,
+            repeatType: "loop",
           }}
         >
           <Typewriter
@@ -103,11 +110,11 @@ const Home = () => {
           />
         </motion.h2>
 
-        {/* Scroll-based animation for subtext */}
+        {/* Subtext */}
         <motion.p
           className="text-lg mt-4 max-w-xl text-gray-300"
           initial={{ opacity: 0, y: 50 }}
-          whileInView={{ opacity: 1, y: 0 }}
+          animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 1, delay: 0.5 }}
         >
           Crafting interactive, user-friendly, and visually stunning web
@@ -116,13 +123,19 @@ const Home = () => {
 
         {/* Animated Button */}
         <motion.button
-          className="mt-10 px-6 py-3 bg-blue-600 hover:bg-blue-700 text-white rounded-lg shadow-md"
+          className="mt-10 px-6 py-3 bg-gradient-to-r from-blue-500 to-blue-800 text-white rounded-lg shadow-md"
           whileHover={{
-            scale: 1.1,
-            backgroundColor: "rgb(30,144,255)",
-            boxShadow: "0px 0px 15px rgba(30,144,255, 0.5)",
+            scale: 1.2,
+            boxShadow: "0px 0px 30px 5px #00FFFF",
           }}
-          transition={{ duration: 0.3 }}
+          animate={{
+            boxShadow: ["0px 0px 10px #FFD700", "0px 0px 20px #FF00FF"],
+          }}
+          transition={{
+            duration: 2,
+            repeat: Infinity,
+            repeatType: "mirror",
+          }}
           onClick={() =>
             window.scrollTo({
               top: document.body.scrollHeight,
@@ -134,32 +147,36 @@ const Home = () => {
         </motion.button>
       </section>
 
-      {/* 3D Canvas Section with Parallax */}
+      {/* 3D Canvas Section */}
       <section className="absolute top-0 w-full h-screen z-10">
-        <motion.div style={{ scale: scrollYProgress }}>
-          <Canvas
-            className="w-full h-screen"
-            camera={{ position: [0, 0, 5], near: 0.1, far: 1000 }}
-          >
-            <Suspense fallback={<Loader />}>
-              {/* Lighting */}
-              <directionalLight position={[5, 5, 5]} intensity={1.5} />
-              <ambientLight intensity={0.3} />
-              <hemisphereLight intensity={0.5} />
+        <Canvas
+          className="w-full h-screen"
+          camera={{ position: [0, 0, 5], near: 0.1, far: 1000 }}
+        >
+          <Suspense fallback={<Loader />}>
+            {/* Lighting */}
+            <directionalLight position={[5, 5, 5]} intensity={1.5} />
+            <ambientLight intensity={0.3} />
+            <hemisphereLight intensity={0.5} />
 
-              {/* Moving Plane */}
-              <Plane
-                scale={[0.03, 0.03, 0.03]}
-                position={[0, 0, -5]}
-                animate={{ x: [-2, 2, -2] }}
-                transition={{ duration: 5, repeat: Infinity }}
-              />
+            <motion.group
+              animate={{ scale: [1, 1.05, 1] }}
+              transition={{
+                duration: 3,
+                repeat: Infinity,
+                repeatType: "mirror",
+              }}
+            ></motion.group>
 
-              {/* Graceful Bird */}
+            {/* Graceful Bird with Subtle Spin */}
+            <motion.group
+              animate={{ rotateY: [0, 360] }}
+              transition={{ duration: 10, repeat: Infinity }}
+            >
               <Bird />
-            </Suspense>
-          </Canvas>
-        </motion.div>
+            </motion.group>
+          </Suspense>
+        </Canvas>
       </section>
 
       {/* Sound Button */}
@@ -171,9 +188,9 @@ const Home = () => {
           whileTap={{ rotate: 360 }}
           animate={{ scale: [1, 1.2, 1] }}
           transition={{
-            duration: 0.6,
+            duration: 1,
             repeat: Infinity,
-            repeatType: "reverse",
+            repeatType: "mirror",
           }}
           onClick={() => setIsPlaying(!isPlaying)}
         />
