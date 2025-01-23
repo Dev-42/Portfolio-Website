@@ -102,6 +102,10 @@ const Home = () => {
               strings: [
                 "Hello, I'm Dev Bhattacharya",
                 "A Passionate Developer",
+                "A Software Engineer",
+                "Frontend Engineer",
+                "Backend Engineer",
+                "Full Stack Developer",
               ],
               autoStart: true,
               loop: true,
