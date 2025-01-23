@@ -72,7 +72,7 @@ const Home = () => {
         <motion.img
           src={ProfileImage}
           alt="Profile"
-          className="rounded-full w-40 h-40 border-4 border-gray-700 shadow-lg"
+          className="rounded-full w-40 h-40 border-4 border-gray-700 shadow-lg z-50"
           animate={{
             y: [0, -10, 0],
           }}
@@ -83,47 +83,51 @@ const Home = () => {
           }}
         />
 
-        {/* Animated Heading */}
-        <motion.h2
-          className="text-5xl font-extrabold mt-6 text-white"
+        <motion.div
+          className="text-center mt-6"
           initial={{ opacity: 0 }}
-          animate={{
-            opacity: 1,
-            color: ["#FFD700", "#FF00FF", "#00FFFF", "#FFD700"],
-          }}
-          transition={{
-            duration: 5,
-            repeat: Infinity,
-            repeatType: "loop",
-          }}
+          animate={{ opacity: 1 }}
+          transition={{ duration: 1.5 }}
         >
-          <Typewriter
-            options={{
-              strings: [
-                "Hello, I'm Dev Bhattacharya",
-                "A Passionate Developer",
-                "A Software Engineer",
-                "Frontend Engineer",
-                "Backend Engineer",
-                "Full Stack Developer",
-              ],
-              autoStart: true,
-              loop: true,
-              deleteSpeed: 50,
-            }}
-          />
-        </motion.h2>
+          {/* Main Heading with Dynamic Glow */}
+          <h1 className="text-6xl font-extrabold bg-clip-text text-transparent bg-gradient-to-r from-yellow-400 via-pink-500 to-cyan-400 drop-shadow-[0_0_20px_rgba(255,215,0,0.8)]">
+            Hello, I'm <span className="text-cyan-400">Dev Bhattacharya</span>
+          </h1>
 
-        {/* Subtext */}
-        <motion.p
-          className="text-lg mt-4 max-w-xl text-gray-300"
-          initial={{ opacity: 0, y: 50 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 1, delay: 0.5 }}
-        >
-          Crafting interactive, user-friendly, and visually stunning web
-          applications with a deep passion for innovation.
-        </motion.p>
+          {/* Typewriter Effect with Gradient Text */}
+          <motion.div
+            className="mt-6 text-3xl font-bold bg-clip-text text-transparent bg-gradient-to-r from-green-400 via-blue-500 to-purple-600 animate-pulse"
+            initial={{ y: 30, opacity: 0 }}
+            animate={{ y: 0, opacity: 1 }}
+            transition={{ duration: 1, delay: 0.5 }}
+          >
+            <Typewriter
+              options={{
+                strings: [
+                  "— Innovative Frontend Developer 🚀",
+                  "— Backend Engineer Who Delivers 💻",
+                  "— Crafting Seamless User Experiences ✨",
+                  "— A Full Stack Trailblazer 🔥",
+                ],
+                autoStart: true,
+                loop: true,
+                deleteSpeed: 30,
+              }}
+            />
+          </motion.div>
+
+          {/* Tagline with Animated Glow */}
+          <motion.p
+            className="mt-8 text-lg max-w-2xl mx-auto text-gray-300 tracking-wide leading-relaxed drop-shadow-[0_0_10px_rgba(0,255,255,0.8)]"
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 1, delay: 1 }}
+          >
+            With a passion for building visually stunning, user-focused
+            applications, I bring creative ideas to life through cutting-edge
+            web technologies.
+          </motion.p>
+        </motion.div>
 
         {/* Animated Button */}
         <motion.button
