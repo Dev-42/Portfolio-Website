@@ -11,7 +11,7 @@ import { loadFull } from "tsparticles";
 import Particles from "@tsparticles/react";
 import Typewriter from "typewriter-effect";
 import { useNavigate } from "react-router-dom";
-import { FaLinkedin, FaInstagram } from "react-icons/fa";
+import { FaLinkedin, FaInstagram, FaGithub, FaTwitter } from "react-icons/fa";
 
 const Home = () => {
   const navigate = useNavigate();
@@ -150,9 +150,111 @@ const Home = () => {
             web technologies.
           </motion.p>
         </motion.div>
+        {/* Social Media Links */}
+        <motion.div
+          className="flex justify-center items-center gap-4 mt-2"
+          initial={{ y: 30, opacity: 0 }}
+          animate={{ y: 0, opacity: 1 }}
+          transition={{ duration: 1, delay: 0.8 }}
+        >
+          {/* LinkedIn */}
+          <motion.a
+            href="https://www.linkedin.com/in/devbhattacharya"
+            target="_blank"
+            rel="noopener noreferrer"
+            whileHover={{
+              scale: 1.5,
+              rotate: 15,
+              transition: { duration: 0.5 },
+              boxShadow: "0px 0px 20px rgba(0, 191, 255, 0.8)",
+            }}
+            whileTap={{ scale: 1.1 }}
+            animate={{
+              y: [0, -10, 0],
+              rotate: [0, 0, 360],
+              transition: { duration: 3, repeat: Infinity, ease: "easeInOut" },
+            }}
+            className="text-white"
+          >
+            <FaLinkedin className="text-3xl hover:text-cyan-400 transition-all" />
+          </motion.a>
+
+          {/* Instagram */}
+          <motion.a
+            href="https://www.instagram.com/devbhattacharya"
+            target="_blank"
+            rel="noopener noreferrer"
+            whileHover={{
+              scale: 1.5,
+              rotate: -15,
+              transition: { duration: 0.5 },
+              boxShadow: "0px 0px 20px rgba(255, 105, 180, 0.8)",
+            }}
+            whileTap={{ scale: 1.2 }}
+            animate={{
+              scale: [1, 1.2, 1],
+              rotate: [0, -10, 10, 0],
+              color: ["#ffffff", "#ff69b4", "#ff1493"],
+              transition: {
+                duration: 2.5,
+                repeat: Infinity,
+                ease: "easeInOut",
+              },
+            }}
+            className="text-white"
+          >
+            <FaInstagram className="text-3xl hover:text-pink-400 transition-all" />
+          </motion.a>
+
+          {/* Twitter */}
+          <motion.a
+            href="https://www.twitter.com/devbhattacharya"
+            target="_blank"
+            rel="noopener noreferrer"
+            whileHover={{
+              scale: 1.5,
+              rotate: 10,
+              transition: { duration: 0.5 },
+              boxShadow: "0px 0px 20px rgba(29, 161, 242, 0.8)",
+            }}
+            whileTap={{ scale: 1.2 }}
+            animate={{
+              y: [0, -8, 8, 0],
+              scale: [1, 1.1, 1],
+              color: ["#ffffff", "#1DA1F2", "#1E90FF"],
+              transition: { duration: 2, repeat: Infinity, ease: "easeInOut" },
+            }}
+            className="text-white"
+          >
+            <FaTwitter className="text-3xl hover:text-blue-400 transition-all" />
+          </motion.a>
+
+          {/* GitHub */}
+          <motion.a
+            href="https://www.github.com/devbhattacharya"
+            target="_blank"
+            rel="noopener noreferrer"
+            whileHover={{
+              scale: 1.5,
+              transition: { duration: 0.5 },
+              boxShadow: "0px 0px 20px rgba(51, 51, 51, 0.8)",
+            }}
+            whileTap={{ scale: 1.2 }}
+            animate={{
+              scale: [1, 1.1, 1],
+              y: [0, -10, 10, 0],
+              rotate: [0, 10, -10, 0],
+              color: ["#ffffff", "#333", "#555"],
+              transition: { duration: 3, repeat: Infinity, ease: "easeInOut" },
+            }}
+            className="text-white"
+          >
+            <FaGithub className="text-3xl hover:text-gray-400 transition-all" />
+          </motion.a>
+        </motion.div>
 
         {/* Animated Button */}
-        <div className="flex gap-6 mt-10">
+        <div className="flex gap-6 mt-[22px]">
           {/* Explore My Work Button */}
           <motion.button
             className="px-6 py-3 bg-gradient-to-r from-blue-500 to-blue-800 text-white rounded-lg shadow-md"
