@@ -10,8 +10,11 @@ import Loader from "../components/Loader";
 import { loadFull } from "tsparticles";
 import Particles from "@tsparticles/react";
 import Typewriter from "typewriter-effect";
+import { useNavigate } from "react-router-dom";
+import { FaLinkedin, FaInstagram } from "react-icons/fa";
 
 const Home = () => {
+  const navigate = useNavigate();
   const audioRef = useRef(new Audio(sakura));
   audioRef.current.volume = 0.6;
   audioRef.current.loop = true;
@@ -67,24 +70,43 @@ const Home = () => {
       />
 
       {/* Hero Section */}
-      <section className="relative flex flex-col items-center justify-center h-screen text-center z-20">
+      <section
+        className="relative flex flex-col items-center justify-center h-screen text-center z-20"
+        style={{ marginTop: "25px" }}
+      >
         {/* Profile Image with Floating Effect */}
         <motion.img
           src={ProfileImage}
           alt="Profile"
-          className="rounded-full w-40 h-40 border-4 border-gray-700 shadow-lg z-50"
+          className="rounded-full w-40 h-40 border-4 shadow-lg"
+          style={{
+            boxShadow:
+              "0 0 30px rgba(0,255,255,0.7), 0 0 60px rgba(0,255,255,0.5)",
+          }}
           animate={{
             y: [0, -10, 0],
+            rotateZ: [-3, 3, -3],
           }}
           transition={{
             duration: 3,
             repeat: Infinity,
             repeatType: "mirror",
           }}
+          onMouseMove={(e) => {
+            const rect = e.target.getBoundingClientRect();
+            const x = e.clientX - rect.left;
+            const y = e.clientY - rect.top;
+            e.target.style.transform = `rotateY(${x / 50}deg) rotateX(${
+              y / 50
+            }deg)`;
+          }}
+          onMouseLeave={(e) => {
+            e.target.style.transform = "rotateY(0deg) rotateX(0deg)";
+          }}
         />
 
         <motion.div
-          className="text-center mt-6"
+          className="text-center mt-[18px]"
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           transition={{ duration: 1.5 }}
@@ -118,7 +140,7 @@ const Home = () => {
 
           {/* Tagline with Animated Glow */}
           <motion.p
-            className="mt-8 text-lg max-w-2xl mx-auto text-gray-300 tracking-wide leading-relaxed drop-shadow-[0_0_10px_rgba(0,255,255,0.8)]"
+            className="mt-[1rem] text-lg max-w-2xl mx-auto text-gray-300 tracking-wide leading-relaxed drop-shadow-[0_0_10px_rgba(0,255,255,0.8)]"
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 1, delay: 1 }}
@@ -130,29 +152,51 @@ const Home = () => {
         </motion.div>
 
         {/* Animated Button */}
-        <motion.button
-          className="mt-10 px-6 py-3 bg-gradient-to-r from-blue-500 to-blue-800 text-white rounded-lg shadow-md"
-          whileHover={{
-            scale: 1.2,
-            boxShadow: "0px 0px 30px 5px #00FFFF",
-          }}
-          animate={{
-            boxShadow: ["0px 0px 10px #FFD700", "0px 0px 20px #FF00FF"],
-          }}
-          transition={{
-            duration: 2,
-            repeat: Infinity,
-            repeatType: "mirror",
-          }}
-          onClick={() =>
-            window.scrollTo({
-              top: document.body.scrollHeight,
-              behavior: "smooth",
-            })
-          }
-        >
-          Explore My Work
-        </motion.button>
+        <div className="flex gap-6 mt-10">
+          {/* Explore My Work Button */}
+          <motion.button
+            className="px-6 py-3 bg-gradient-to-r from-blue-500 to-blue-800 text-white rounded-lg shadow-md"
+            whileHover={{
+              scale: 1.2,
+              boxShadow: "0px 0px 30px 5px #00FFFF",
+            }}
+            animate={{
+              boxShadow: ["0px 0px 10px #FFD700", "0px 0px 20px #FF00FF"],
+            }}
+            transition={{
+              duration: 2,
+              repeat: Infinity,
+              repeatType: "mirror",
+            }}
+            onClick={() => navigate("/projects")}
+          >
+            Explore My Work
+          </motion.button>
+
+          {/* Contact Button */}
+          <motion.button
+            className="px-6 py-3 bg-gradient-to-r from-green-500 to-teal-600 text-white rounded-lg shadow-md relative"
+            whileHover={{
+              scale: 1.2,
+              boxShadow: "0px 0px 30px 5px #00FF7F",
+            }}
+            animate={{
+              boxShadow: [
+                "0px 0px 10px #00FF7F",
+                "0px 0px 20px #00FA9A",
+                "0px 0px 10px #00FF7F",
+              ],
+            }}
+            transition={{
+              duration: 2,
+              repeat: Infinity,
+              repeatType: "mirror",
+            }}
+            onClick={() => navigate("/contact")}
+          >
+            Contact Me
+          </motion.button>
+        </div>
       </section>
 
       {/* 3D Canvas Section */}
