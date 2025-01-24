@@ -83,10 +83,10 @@ const Home = () => {
             boxShadow:
               "0 0 30px rgba(0,255,255,0.7), 0 0 60px rgba(0,255,255,0.5)",
           }}
-          animate={{
-            y: [0, -10, 0],
-            rotateZ: [-3, 3, -3],
-          }}
+          // animate={{
+          //   y: [0, -10, 0],
+          //   rotateZ: [-3, 3, -3],
+          // }}
           transition={{
             duration: 3,
             repeat: Infinity,
@@ -106,19 +106,19 @@ const Home = () => {
         />
 
         <motion.div
-          className="text-center mt-[18px]"
+          className="text-center p-4"
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           transition={{ duration: 1.5 }}
         >
           {/* Main Heading with Dynamic Glow */}
-          <h1 className="text-6xl font-extrabold bg-clip-text text-transparent bg-gradient-to-r from-yellow-400 via-pink-500 to-cyan-400 drop-shadow-[0_0_20px_rgba(255,215,0,0.8)]">
+          <h1 className="text-4xl md:text-6xl font-extrabold bg-clip-text text-transparent bg-gradient-to-r from-yellow-400 via-pink-500 to-cyan-400 drop-shadow-[0_0_20px_rgba(255,215,0,0.8)]">
             Hello, I'm <span className="text-cyan-400">Dev Bhattacharya</span>
           </h1>
 
           {/* Typewriter Effect with Gradient Text */}
           <motion.div
-            className="mt-6 text-3xl font-bold bg-clip-text text-transparent bg-gradient-to-r from-green-400 via-blue-500 to-purple-600 animate-pulse"
+            className="mt-4 text-xl md:text-3xl font-bold bg-clip-text text-transparent bg-gradient-to-r from-green-400 via-blue-500 to-purple-600 animate-pulse px-2 md:px-0 text-center"
             initial={{ y: 30, opacity: 0 }}
             animate={{ y: 0, opacity: 1 }}
             transition={{ duration: 1, delay: 0.5 }}
@@ -159,7 +159,7 @@ const Home = () => {
         >
           {/* LinkedIn */}
           <motion.a
-            href="https://www.linkedin.com/in/devbhattacharya"
+            href="https://www.linkedin.com/in/dev42/"
             target="_blank"
             rel="noopener noreferrer"
             whileHover={{
@@ -181,7 +181,7 @@ const Home = () => {
 
           {/* Instagram */}
           <motion.a
-            href="https://www.instagram.com/devbhattacharya"
+            href="https://www.instagram.com/koder_dev1221/?hl=en"
             target="_blank"
             rel="noopener noreferrer"
             whileHover={{
@@ -208,7 +208,7 @@ const Home = () => {
 
           {/* Twitter */}
           <motion.a
-            href="https://www.twitter.com/devbhattacharya"
+            href="https://x.com/dev_bhatt_42"
             target="_blank"
             rel="noopener noreferrer"
             whileHover={{
@@ -231,7 +231,7 @@ const Home = () => {
 
           {/* GitHub */}
           <motion.a
-            href="https://www.github.com/devbhattacharya"
+            href="https://github.com/Dev-42"
             target="_blank"
             rel="noopener noreferrer"
             whileHover={{

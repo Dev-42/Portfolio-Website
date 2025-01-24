@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { NavLink } from "react-router-dom";
 import { FiMenu, FiX } from "react-icons/fi"; // For icons
+import { FiDownload } from "react-icons/fi"; // Download icon
 
 const Navbar = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
@@ -35,6 +36,21 @@ const Navbar = () => {
               {item}
             </NavLink>
           ))}
+
+          {/* Download Resume Button */}
+          <a
+            href="https://drive.google.com/uc?export=download&id=1UgmL-iy_E_OVOVAWE7XaxhNZvzKzTzIH"
+            download="Dev_Bhattacharya_Resume.pdf"
+            className="relative inline-flex items-center gap-3 px-6 py-3 text-sm md:text-base font-semibold text-white bg-gradient-to-r from-blue-500 to-purple-600 rounded-full shadow-lg transition-all duration-300 hover:scale-105 hover:shadow-xl"
+            style={{
+              background: "linear-gradient(90deg, #3b82f6, #9333ea)",
+              borderImageSlice: 1,
+            }}
+          >
+            <div className="absolute inset-0 rounded-full bg-gradient-to-r from-blue-400 to-cyan-400 opacity-50 blur-md"></div>
+            <FiDownload className="text-xl transition-transform duration-300 group-hover:translate-y-[-2px] group-hover:scale-110" />
+            <span>Resume</span>
+          </a>
         </nav>
 
         {/* Mobile Menu Toggle */}
@@ -60,6 +76,21 @@ const Navbar = () => {
               {item}
             </NavLink>
           ))}
+
+          {/* Mobile Download Resume Button */}
+          <a
+            href="https://drive.google.com/uc?export=download&id=1UgmL-iy_E_OVOVAWE7XaxhNZvzKzTzIH"
+            download="Dev_Bhattacharya_Resume.pdf"
+            className="relative inline-flex items-center gap-3 px-6 py-3 text-sm md:text-base font-semibold text-white bg-gradient-to-r from-blue-500 to-purple-600 rounded-full shadow-lg transition-all duration-300 hover:scale-105 hover:shadow-xl"
+            style={{
+              background: "linear-gradient(90deg, #3b82f6, #9333ea)",
+              borderImageSlice: 1,
+            }}
+          >
+            <div className="absolute inset-0 rounded-full bg-gradient-to-r from-blue-400 to-cyan-400 opacity-50 blur-md"></div>
+            <FiDownload className="text-xl transition-transform duration-300 group-hover:translate-y-[-2px] group-hover:scale-110" />
+            <span>Resume</span>
+          </a>
         </nav>
       )}
     </header>
