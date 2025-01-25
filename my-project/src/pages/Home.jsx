@@ -56,8 +56,21 @@ const Home = () => {
       audioRef.current.play();
     } else {
       audioRef.current.pause();
+      audioRef.current.currentTime = 0; // Reset audio to the beginning
     }
   }, [isPlaying]);
+
+  const toggleSound = () => {
+    setIsPlaying((prev) => !prev);
+  };
+
+  useEffect(() => {
+    // Clean up the audio when the component unmounts
+    return () => {
+      audioRef.current.pause();
+      audioRef.current.currentTime = 0; // Reset audio
+    };
+  }, []);
 
   return (
     <div className="relative w-full overflow-hidden h-screen bg-gradient-to-b from-indigo-900 via-gray-900 to-black text-white">
@@ -162,6 +175,7 @@ const Home = () => {
             href="https://www.linkedin.com/in/dev42/"
             target="_blank"
             rel="noopener noreferrer"
+            aria-label="LinkedIn of Dev Bhattacharya"
             whileHover={{
               scale: 1.5,
               rotate: 15,
@@ -184,6 +198,7 @@ const Home = () => {
             href="https://www.instagram.com/koder_dev1221/?hl=en"
             target="_blank"
             rel="noopener noreferrer"
+            aria-label="Instagram of Dev Bhattacharya"
             whileHover={{
               scale: 1.5,
               rotate: -15,
@@ -211,6 +226,7 @@ const Home = () => {
             href="https://x.com/dev_bhatt_42"
             target="_blank"
             rel="noopener noreferrer"
+            aria-label="Twitter of Dev Bhattacharya"
             whileHover={{
               scale: 1.5,
               rotate: 10,
@@ -234,6 +250,7 @@ const Home = () => {
             href="https://github.com/Dev-42"
             target="_blank"
             rel="noopener noreferrer"
+            aria-label="Github of Dev Bhattacharya"
             whileHover={{
               scale: 1.5,
               transition: { duration: 0.5 },
@@ -302,53 +319,19 @@ const Home = () => {
           </motion.button>
         </div>
       </section>
-
-      {/* 3D Canvas Section */}
-      <section className="absolute top-0 w-full h-screen z-10">
-        <Canvas
-          className="w-full h-screen"
-          camera={{ position: [0, 0, 5], near: 0.1, far: 1000 }}
-        >
-          <Suspense fallback={<Loader />}>
-            {/* Lighting */}
-            <directionalLight position={[5, 5, 5]} intensity={1.5} />
-            <ambientLight intensity={0.3} />
-            <hemisphereLight intensity={0.5} />
-
-            <motion.group
-              animate={{ scale: [1, 1.05, 1] }}
-              transition={{
-                duration: 3,
-                repeat: Infinity,
-                repeatType: "mirror",
-              }}
-            ></motion.group>
-
-            {/* Graceful Bird with Subtle Spin */}
-            <motion.group
-              animate={{ rotateY: [0, 360] }}
-              transition={{ duration: 10, repeat: Infinity }}
-            >
-              <Bird />
-            </motion.group>
-          </Suspense>
-        </Canvas>
-      </section>
-
-      {/* Sound Button */}
-      <div className="absolute bottom-4 left-4 z-30">
+      <div className="absolute bottom-[57rem] md:bottom-4 left-4 z-30">
         <motion.img
           src={!isPlaying ? soundon : soundoff}
           alt="sound"
           className="w-12 h-12 cursor-pointer object-contain"
-          whileTap={{ rotate: 360 }}
+          whileTap={{ rotate: 180 }}
           animate={{ scale: [1, 1.2, 1] }}
           transition={{
             duration: 1,
             repeat: Infinity,
             repeatType: "mirror",
           }}
-          onClick={() => setIsPlaying(!isPlaying)}
+          onClick={toggleSound}
         />
       </div>
     </div>
