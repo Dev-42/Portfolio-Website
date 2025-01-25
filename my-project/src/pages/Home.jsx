@@ -258,12 +258,13 @@ const Home = () => {
           {/* Explore My Work Button */}
           <motion.button
             className="px-6 py-3 bg-gradient-to-r from-blue-500 to-blue-800 text-white rounded-lg shadow-md"
+            animate={{
+              scale: [1, 1.05, 1],
+              boxShadow: ["0px 0px 10px #FFD700", "0px 0px 20px #FF00FF"],
+            }}
             whileHover={{
               scale: 1.2,
               boxShadow: "0px 0px 30px 5px #00FFFF",
-            }}
-            animate={{
-              boxShadow: ["0px 0px 10px #FFD700", "0px 0px 20px #FF00FF"],
             }}
             transition={{
               duration: 2,
@@ -277,17 +278,18 @@ const Home = () => {
 
           {/* Contact Button */}
           <motion.button
-            className="px-6 py-3 bg-gradient-to-r from-green-500 to-teal-600 text-white rounded-lg shadow-md relative"
-            whileHover={{
-              scale: 1.2,
-              boxShadow: "0px 0px 30px 5px #00FF7F",
-            }}
+            className="px-6 py-3 bg-gradient-to-r from-green-500 to-teal-600 text-white rounded-lg shadow-md"
             animate={{
+              scale: [1, 1.05, 1],
               boxShadow: [
                 "0px 0px 10px #00FF7F",
                 "0px 0px 20px #00FA9A",
                 "0px 0px 10px #00FF7F",
               ],
+            }}
+            whileHover={{
+              scale: 1.2,
+              boxShadow: "0px 0px 30px 5px #00FF7F",
             }}
             transition={{
               duration: 2,

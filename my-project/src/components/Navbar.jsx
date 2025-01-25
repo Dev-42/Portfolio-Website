@@ -4,6 +4,7 @@ import { FiMenu, FiX } from "react-icons/fi"; // For icons
 import { FiDownload } from "react-icons/fi"; // Download icon
 
 const Navbar = () => {
+  const [isPlaying, setIsPlaying] = useState(false);
   const [isMenuOpen, setIsMenuOpen] = useState(false);
 
   const toggleMenu = () => setIsMenuOpen((prev) => !prev);
