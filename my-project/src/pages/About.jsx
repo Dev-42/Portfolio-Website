@@ -8,9 +8,11 @@ import { skills, experiences } from "../constants";
 import Leetcode from "../assets/images/Leetcode.png";
 import GitHub from "../assets/images/Github.png";
 import CTA from "../components/CTA";
+import DarkModeToggle from "../components/ToggleButton";
 const About = () => {
   return (
-    <section className="max-container">
+    <section className="max-container bg-gray-100 dark:bg-gray-900 text-gray-900 dark:text-gray-100">
+      <DarkModeToggle />
       <h1 className="head-text">
         Hello, I'm{" "}
         <span className="blue-gradient_text font-semibold drop-shadow">

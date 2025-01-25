@@ -5,6 +5,8 @@ import Loader from "../components/Loader";
 import Fox from "../Models/Fox";
 import useAlert from "../hooks/useAlert";
 import Alert from "../components/Alert";
+import DarkModeToggle from "../components/ToggleButton";
+
 const Contact = () => {
   const formRef = useRef(null);
   const initialState = { name: "", email: "", message: "" };
