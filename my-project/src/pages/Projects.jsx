@@ -5,9 +5,13 @@ import { projects } from "../constants/index";
 import { arrow } from "../assets/icons";
 import DarkModeToggle from "../components/ToggleButton";
 import { motion } from "framer-motion";
+import { useInView } from "react-intersection-observer";
 
 const Projects = () => {
-  const [displayText, setDisplayText] = useState("");
+  const [ref, inVeiw] = useInView({
+    triggerOnce: true,
+    threshold: 0.2,
+  });
   const text = `Throughout my journey as a web developer, I've embarked on numerous projects,but these are the ones I hold closest to my heart. As a passionate developer specializing in the MERN stack, I love building projects and continuously seek to improve them. If you come across something that piques your interest, feel free to explore the codebase and share your thoughts or ideas.Your feedback is highly valued!`;
   const container = {
     hidden: { opacity: 0 },
@@ -120,15 +124,32 @@ const Projects = () => {
                   />
                 </div>
               </motion.div>
-
+              {/* Projects heading */}
               <div className="mt-5 flex flex-col">
                 <motion.h4
-                  className="text-2xl font-poppins font-semibold"
-                  initial={{ scale: 0.8, opacity: 0 }}
-                  animate={{ scale: 1, opacity: 1 }}
-                  transition={{ duration: 0.6, ease: "easeOut" }}
+                  className="text-2xl font-poppins font-semibold relative inline-block bg-clip-text text-transparent bg-gradient-to-r from-teal-500 to-purple-500"
+                  initial={{ opacity: 0, scale: 0.8 }}
+                  animate={{ opacity: 1, scale: 1 }}
+                  transition={{ duration: 0.5, ease: "easeOut" }}
+                  whileHover={{
+                    scale: 1.05,
+                  }}
                 >
-                  {project.name}
+                  {project.name.split("").map((char, index) => (
+                    <motion.span
+                      key={`${char}-${index}`}
+                      initial={{ opacity: 0, y: 20 }}
+                      animate={{ opacity: 1, y: 0 }}
+                      transition={{
+                        delay: 0.1 * index, // Stagger effect for each letter
+                        duration: 0.5,
+                        ease: "easeOut",
+                      }}
+                      className="inline-block hover:animate-pulse"
+                    >
+                      {char}
+                    </motion.span>
+                  ))}
                 </motion.h4>
                 <motion.p
                   className="mt-2 text-slate-500"
