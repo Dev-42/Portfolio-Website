@@ -4,9 +4,6 @@ import { soundon, soundoff } from "../assets/icons";
 import sakura from "../assets/sakura.mp3";
 import ProfileImage from "../assets/ProfileImage.jpg"; // Replace with your image path
 import { motion } from "framer-motion";
-import Plane from "../Models/Plane";
-import Bird from "../Models/Bird";
-import Loader from "../components/Loader";
 import { loadFull } from "tsparticles";
 import Particles from "@tsparticles/react";
 import Typewriter from "typewriter-effect";
