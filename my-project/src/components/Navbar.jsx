@@ -40,7 +40,7 @@ const Navbar = () => {
 
           {/* Download Resume Button */}
           <a
-            href="https://drive.google.com/uc?export=download&id=1UgmL-iy_E_OVOVAWE7XaxhNZvzKzTzIH"
+            href="https://drive.google.com/uc?export=download&id=1gy1qNTmWaQ36PFICkdiIWgqDNJzWACM7"
             download="Dev_Bhattacharya_Resume.pdf"
             className="relative inline-flex items-center gap-3 px-6 py-3 text-sm md:text-base font-semibold text-white bg-gradient-to-r from-blue-500 to-purple-600 rounded-full shadow-lg transition-all duration-300 hover:scale-105 hover:shadow-xl"
             style={{
@@ -80,7 +80,7 @@ const Navbar = () => {
 
           {/* Mobile Download Resume Button */}
           <a
-            href="https://drive.google.com/uc?export=download&id=1UgmL-iy_E_OVOVAWE7XaxhNZvzKzTzIH"
+            href="https://drive.google.com/uc?export=download&id=1gy1qNTmWaQ36PFICkdiIWgqDNJzWACM7"
             download="Dev_Bhattacharya_Resume.pdf"
             className="relative inline-flex items-center gap-3 px-6 py-3 text-sm md:text-base font-semibold text-white bg-gradient-to-r from-blue-500 to-purple-600 rounded-full shadow-lg transition-all duration-300 hover:scale-105 hover:shadow-xl"
             style={{
