@@ -10,10 +10,6 @@ import { FaGithub } from "react-icons/fa"; // GitHub Icon
 import { FiGlobe } from "react-icons/fi"; // Globe Icon for Live Link
 
 const Projects = () => {
-  const [ref, inVeiw] = useInView({
-    triggerOnce: true,
-    threshold: 0.2,
-  });
   const text = `Throughout my journey as a web developer, I've embarked on numerous projects,but these are the ones I hold closest to my heart. As a passionate developer specializing in the MERN stack, I love building projects and continuously seek to improve them. If you come across something that piques your interest, feel free to explore the codebase and share your thoughts or ideas.Your feedback is highly valued!`;
   const container = {
     hidden: { opacity: 0 },
@@ -167,7 +163,7 @@ const Projects = () => {
                     href={project.githubLink}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="flex items-center text-gray-700 hover:text-black"
+                    className="flex items-center text-gray-700 dark:text-gray-300 hover:text-black dark:hover:text-white"
                     whileHover={{ scale: 1.2 }}
                     transition={{ duration: 0.3 }}
                   >
@@ -189,7 +185,7 @@ const Projects = () => {
                     href={project.link}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="flex items-center text-blue-600 hover:text-blue-800"
+                    className="flex items-center text-blue-600 dark:text-blue-400 hover:text-blue-800 dark:hover:text-blue-500"
                     whileHover={{ scale: 1.2 }}
                     transition={{ duration: 0.3 }}
                   >
