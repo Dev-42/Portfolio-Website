@@ -2,7 +2,7 @@ import { useState } from "react";
 import { NavLink } from "react-router-dom";
 import { FiMenu, FiX } from "react-icons/fi"; // For icons
 import { FiDownload } from "react-icons/fi"; // Download icon
-
+import DarkModeToggle from "./ToggleButton";
 const Navbar = () => {
   const [isPlaying, setIsPlaying] = useState(false);
   const [isMenuOpen, setIsMenuOpen] = useState(false);
@@ -54,10 +54,18 @@ const Navbar = () => {
           </a>
         </nav>
 
-        {/* Mobile Menu Toggle */}
-        <button className="md:hidden text-white text-2xl" onClick={toggleMenu}>
-          {isMenuOpen ? <FiX /> : <FiMenu />}
-        </button>
+        {/* Mobile Dark Mode Toggle */}
+        <div className="md:hidden flex items-center gap-4">
+          <DarkModeToggle />
+          {/* Mobile Menu Toggle */}
+          <button
+            className="text-white text-2xl"
+            onClick={toggleMenu}
+            aria-label="Toggle Menu"
+          >
+            {isMenuOpen ? <FiX /> : <FiMenu />}
+          </button>
+        </div>
       </div>
 
       {/* Mobile Navigation */}

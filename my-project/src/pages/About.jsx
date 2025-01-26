@@ -12,7 +12,9 @@ import DarkModeToggle from "../components/ToggleButton";
 const About = () => {
   return (
     <section className="max-container bg-gray-100 dark:bg-gray-900 text-gray-900 dark:text-gray-100">
-      <DarkModeToggle />
+      <div className="hidden md:block">
+        <DarkModeToggle />
+      </div>
       <h1 className="head-text">
         Hello, I'm{" "}
         <span className="blue-gradient_text font-semibold drop-shadow">
