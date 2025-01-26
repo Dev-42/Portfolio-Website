@@ -6,6 +6,8 @@ import { arrow } from "../assets/icons";
 import DarkModeToggle from "../components/ToggleButton";
 import { motion } from "framer-motion";
 import { useInView } from "react-intersection-observer";
+import { FaGithub } from "react-icons/fa"; // GitHub Icon
+import { FiGlobe } from "react-icons/fi"; // Globe Icon for Live Link
 
 const Projects = () => {
   const [ref, inVeiw] = useInView({
@@ -159,20 +161,49 @@ const Projects = () => {
                 >
                   {project.description}
                 </motion.p>
-                <div className="mt-5 flex items-center gap-2 font-poppins">
-                  <Link
-                    to={project.link}
+                <div className="mt-5 flex items-center gap-4 font-poppins">
+                  {/* GitHub Link */}
+                  <motion.a
+                    href={project.githubLink}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="font-semibold text-blue-600 hover:text-blue-800 transition-colors"
+                    className="flex items-center text-gray-700 hover:text-black"
+                    whileHover={{ scale: 1.2 }}
+                    transition={{ duration: 0.3 }}
                   >
-                    Live Link
-                  </Link>
-                  <img
-                    src={arrow}
-                    alt="arrow"
-                    className="w-4 h-4 object-contain animate-bounce"
-                  />
+                    <motion.div
+                      animate={{ rotate: [0, 15, -15, 0] }}
+                      transition={{
+                        duration: 0.8,
+                        repeat: Infinity,
+                        repeatType: "reverse",
+                        ease: "easeInOut",
+                      }}
+                    >
+                      <FaGithub className="w-6 h-6" />
+                    </motion.div>
+                  </motion.a>
+
+                  {/* Live Link */}
+                  <motion.a
+                    href={project.link}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="flex items-center text-blue-600 hover:text-blue-800"
+                    whileHover={{ scale: 1.2 }}
+                    transition={{ duration: 0.3 }}
+                  >
+                    <motion.div
+                      animate={{ y: [0, -5, 0] }}
+                      transition={{
+                        duration: 0.6,
+                        repeat: Infinity,
+                        ease: "easeInOut",
+                      }}
+                    >
+                      <FiGlobe className="w-6 h-6" />
+                    </motion.div>
+                  </motion.a>
                 </div>
               </div>
             </motion.div>

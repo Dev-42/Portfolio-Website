@@ -138,7 +138,8 @@ export const projects = [
     name: "StockInsight Pro",
     description:
       "Developed an advanced AI-driven web application for fundamental stock analysis using ReactJS and the Gemini API, providing investors with precise valuations and actionable insights they can rely on for the next five years.The most trusted tool for the investors worldwide.",
-    link: "https://github.com/Dev-42/A.I-Stock-Prediction-Tool-",
+    githubLink: "https://github.com/Dev-42/A.I-Stock-Prediction-Tool-",
+    link: "https://a-i-stock-prediction-tool.vercel.app/",
   },
   {
     iconUrl: threads,
@@ -146,7 +147,8 @@ export const projects = [
     name: "Mr.Chef | Culinary Express App",
     description:
       "Developed an end-to-end full-stack application revolutionizing food delivery with secure Firebase authentication, dynamic product display via Mr.Chef's API, optimized search with debouncing, and seamless Razorpay integration for secure payments.",
-    link: "https://github.com/Dev-42/Mr.Chef-Culinary-Express-App",
+    githubLink: "https://github.com/Dev-42/Mr.Chef-Culinary-Express-App",
+    link: "https://ephemeral-smakager-9f78ae.netlify.app/",
   },
   {
     iconUrl: car,
@@ -154,7 +156,8 @@ export const projects = [
     name: "HealthKart 2.0",
     description:
       "I led a team of 5 to build HealthKart 2.0, a one-stop destination for medicines, supplements, and fitness equipment.",
-    link: "https://github.com/Swagh001/HealthKart-Clone",
+    githubLink: "https://github.com/Swagh001/HealthKart-Clone",
+    link: "https://graceful-speculoos-4458b2.netlify.app/index.html",
   },
   {
     iconUrl: snapgram,
@@ -162,7 +165,9 @@ export const projects = [
     name: "Express 2.0",
     description:
       "This web app was built by a total of 5 people to serve daily fashion requirement of the youth at their doorstep.",
-    link: "https://github.com/muskanthapa2000/express.com_shopping_website_clone",
+    githubLink:
+      "https://github.com/muskanthapa2000/express.com_shopping_website_clone",
+    link: "https://express-clone-ecomm-site.netlify.app/",
   },
   {
     iconUrl: estate,
@@ -170,6 +175,7 @@ export const projects = [
     name: "Personal Portfolio",
     description:
       "Developed a web application using react,react-router and threeJS to showcase my skills and experience.",
-    link: "https://github.com/Dev-42/Portfolio-Website",
+    githubLink: "https://github.com/Dev-42/Portfolio-Website",
+    link: "",
   },
 ];
