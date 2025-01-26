@@ -32,9 +32,6 @@ const Projects = () => {
   return (
     <div className="w-full">
       <section className="max-container bg-gray-100 dark:bg-gray-900 text-gray-900 dark:text-gray-100">
-        <div className="hidden md:block">
-          <DarkModeToggle />
-        </div>
         {/* My Projects heading */}
         <motion.h1
           className="head-text text-4xl sm:text-6xl lg:text-8xl font-bold text-center leading-tight relative"

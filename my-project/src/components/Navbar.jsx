@@ -24,6 +24,9 @@ const Navbar = () => {
 
         {/* Desktop Navigation */}
         <nav className="hidden md:flex items-center gap-8 text-lg font-medium">
+          <div className="hidden md:block">
+            <DarkModeToggle />
+          </div>
           {["About", "Projects", "Contact"].map((item) => (
             <NavLink
               key={item}
