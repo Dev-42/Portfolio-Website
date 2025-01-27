@@ -117,7 +117,7 @@ const Projects = () => {
                   <img
                     src={project.iconUrl}
                     alt="threads"
-                    className="w-1/2 h-1/2 object-contain"
+                    className="w-1/2 h-1/2 object-contain bg-transparent rounded-lg dark:shadow-none"
                   />
                 </div>
               </motion.div>

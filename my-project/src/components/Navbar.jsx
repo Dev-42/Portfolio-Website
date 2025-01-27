@@ -1,13 +1,15 @@
 import { useState } from "react";
-import { NavLink } from "react-router-dom";
+import { NavLink, useLocation } from "react-router-dom";
 import { FiMenu, FiX } from "react-icons/fi"; // For icons
 import { FiDownload } from "react-icons/fi"; // Download icon
 import DarkModeToggle from "./ToggleButton";
 const Navbar = () => {
   const [isPlaying, setIsPlaying] = useState(false);
   const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const location = useLocation();
 
   const toggleMenu = () => setIsMenuOpen((prev) => !prev);
+  const isHomePage = location.pathname === "/";
 
   return (
     <header className="fixed top-0 left-0 w-full bg-gradient-to-r from-gray-900 via-gray-800 to-gray-900 px-6 py-4 shadow-lg z-50 backdrop-blur-md">
@@ -24,9 +26,11 @@ const Navbar = () => {
 
         {/* Desktop Navigation */}
         <nav className="hidden md:flex items-center gap-8 text-lg font-medium">
-          <div className="hidden md:block">
-            <DarkModeToggle />
-          </div>
+          {!isHomePage && (
+            <div className="hidden md:block">
+              <DarkModeToggle />
+            </div>
+          )}
           {["About", "Projects", "Contact"].map((item) => (
             <NavLink
               key={item}
@@ -59,7 +63,7 @@ const Navbar = () => {
 
         {/* Mobile Dark Mode Toggle */}
         <div className="md:hidden flex items-center gap-4">
-          <DarkModeToggle />
+          {!isHomePage && <DarkModeToggle />}
           {/* Mobile Menu Toggle */}
           <button
             className="text-white text-2xl"
