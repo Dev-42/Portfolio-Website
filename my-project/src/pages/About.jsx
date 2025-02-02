@@ -50,7 +50,7 @@ const About = () => {
   };
 
   const aboutText =
-    "Passionate Software Engineer based in India with a background in competitive programming and hands-on experience in building robust MERN stack applications.";
+    "I'm a passionate MERN Stack Developer with hands-on experience in building scalable web applications and solving complex problems. At CureValue, I contributed to dynamic SEO optimization, data-driven healthcare solutions, and feature-rich user interfaces. With 360+ LeetCode solutions under my belt, I thrive on tackling challenging algorithms and enhancing system performance. I’m an immediate joiner, eager to collaborate, innovate, and drive impactful tech solutions forward.";
   return (
     <section className="max-container bg-gray-100 dark:bg-gray-900 text-gray-900 dark:text-gray-100">
       <div className="hidden md:block"></div>
@@ -116,16 +116,23 @@ const About = () => {
       <div className="py-10 flex flex-col items-center bg-gradient-to-b bg-gray-100 dark:bg-gray-900 text-gray-900 dark:text-gray-100">
         {/* Heading with Animation */}
         <motion.h3
-          className="subhead-text text-6xl font-bold mb-10 text-transparent bg-clip-text bg-gradient-to-r from-purple-500 via-blue-500 to-teal-400 dark:from-purple-400 dark:via-blue-400 dark:to-teal-300"
-          initial={{ opacity: 0, y: -50 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 1, ease: "easeOut" }}
+          className="subhead-text text-6xl font-extrabold mb-10 text-transparent bg-clip-text bg-gradient-to-r from-purple-500 via-blue-500 to-teal-400 dark:from-purple-400 dark:via-blue-400 dark:to-teal-300 relative"
+          initial={{ opacity: 0, y: -100, scale: 0.8 }}
+          animate={{ opacity: 1, y: 0, scale: 1 }}
+          transition={{
+            duration: 1.2,
+            ease: "easeOut",
+            type: "spring",
+            stiffness: 70,
+          }}
           whileHover={{
-            scale: 1.1,
-            textShadow: "0px 0px 15px rgba(128, 90, 213, 0.8)",
+            scale: 1.15,
+            rotate: 2,
+            textShadow: "0 0 20px rgba(128, 90, 213, 0.9)",
+            boxShadow: "0 0 25px rgba(0, 255, 255, 0.6)",
           }}
         >
-          My Skills
+          <span className="animate-pulse-slow">My Skills</span>
         </motion.h3>
 
         {/* Skill Cards */}

@@ -11,6 +11,7 @@ import {
   javascript,
   linkedin,
   mongodb,
+  SQLite,
   motion,
   mui,
   nextjs,
@@ -24,18 +25,52 @@ import {
   tailwindcss,
   threads,
   typescript,
+  materialUI,
+  contentful,
+  Bludit,
+  Sequelize,
 } from "../assets/icons";
 
 export const skills = [
   {
-    imageUrl: css,
-    name: "CSS",
+    imageUrl: nextjs,
+    name: "Next.js",
+    type: "FullStack",
+  },
+  {
+    imageUrl: react,
+    name: "React",
     type: "Frontend",
   },
   {
-    imageUrl: express,
-    name: "Express",
-    type: "Backend",
+    imageUrl: typescript,
+    name: "TypeScript",
+    type: "Frontend",
+  },
+  {
+    imageUrl: javascript,
+    name: "JavaScript",
+    type: "Frontend",
+  },
+  {
+    imageUrl: contentful,
+    name: "Contentful",
+    type: "CMS",
+  },
+  {
+    imageUrl: Bludit,
+    name: "Bludit",
+    type: "CMS",
+  },
+  {
+    imageUrl: materialUI,
+    name: "Material UI",
+    type: "Frontend",
+  },
+  {
+    imageUrl: tailwindcss,
+    name: "Tailwind CSS",
+    type: "Frontend",
   },
   {
     imageUrl: git,
@@ -43,19 +78,14 @@ export const skills = [
     type: "Version Control",
   },
   {
-    imageUrl: github,
-    name: "GitHub",
-    type: "Version Control",
+    imageUrl: express,
+    name: "Express",
+    type: "Backend",
   },
   {
-    imageUrl: html,
-    name: "HTML",
-    type: "Frontend",
-  },
-  {
-    imageUrl: javascript,
-    name: "JavaScript",
-    type: "Frontend",
+    imageUrl: SQLite,
+    name: "SQLite",
+    type: "Database",
   },
   {
     imageUrl: mongodb,
@@ -68,18 +98,18 @@ export const skills = [
     type: "Backend",
   },
   {
-    imageUrl: react,
-    name: "React",
+    imageUrl: Sequelize,
+    name: "Sequelize",
+    type: "ORM",
+  },
+  {
+    imageUrl: html,
+    name: "HTML",
     type: "Frontend",
   },
   {
-    imageUrl: redux,
-    name: "Redux",
-    type: "State Management",
-  },
-  {
-    imageUrl: tailwindcss,
-    name: "Tailwind CSS",
+    imageUrl: css,
+    name: "CSS",
     type: "Frontend",
   },
 ];
