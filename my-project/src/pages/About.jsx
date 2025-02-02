@@ -1,3 +1,4 @@
+import { useState } from "react";
 import {
   VerticalTimeline,
   VerticalTimelineElement,
@@ -10,12 +11,20 @@ import GitHub from "../assets/images/Github.png";
 import CTA from "../components/CTA";
 import DarkModeToggle from "../components/ToggleButton";
 const About = () => {
+  const [selectedCategory, setSelectedCategory] = useState("All");
+  const categories = ["All", ...new Set(skills.map((skill) => skill.type))];
+  const filteredSkills =
+    selectedCategory === "All"
+      ? skills
+      : skills.filter((skill) => skill.type === selectedCategory);
+
   const containerVariants = {
-    hidden: { opacity: 0 },
+    hidden: { opacity: 0, y: 20 },
     visible: {
       opacity: 1,
+      y: 0,
       transition: {
-        staggerChildren: 0.05, // Delays each word's animation slightly
+        staggerChildren: 0.1, // Stagger effect
       },
     },
   };
@@ -27,6 +36,16 @@ const About = () => {
       y: 0,
       transition: { duration: 0.5, ease: "easeOut" },
     },
+  };
+
+  const buttonVariants = {
+    hidden: { opacity: 0, scale: 0.8 },
+    visible: {
+      opacity: 1,
+      scale: 1,
+      transition: { type: "spring", stiffness: 150 },
+    },
+    whileTap: { scale: 0.95, rotate: -5 }, // Ripple-like effect
   };
   const skillVariants = {
     hidden: { opacity: 0, scale: 0.8, y: 50 },
@@ -50,7 +69,7 @@ const About = () => {
   };
 
   const aboutText =
-    "I'm a passionate MERN Stack Developer with hands-on experience in building scalable web applications and solving complex problems. At CureValue, I contributed to dynamic SEO optimization, data-driven healthcare solutions, and feature-rich user interfaces. With 360+ LeetCode solutions under my belt, I thrive on tackling challenging algorithms and enhancing system performance. I’m an immediate joiner, eager to collaborate, innovate, and drive impactful tech solutions forward.";
+    "I'm a passionate MERN Stack Developer with hands-on experience in building scalable web applications and solving complex problems. With 360+ LeetCode solutions under my belt, I thrive on tackling challenging algorithms and enhancing system performance. I’m an immediate joiner, eager to collaborate, innovate, and drive impactful tech solutions forward.";
   return (
     <section className="max-container bg-gray-100 dark:bg-gray-900 text-gray-900 dark:text-gray-100">
       <div className="hidden md:block"></div>
@@ -113,10 +132,10 @@ const About = () => {
           </motion.span>
         ))}
       </motion.div>
-      <div className="py-10 flex flex-col items-center bg-gradient-to-b bg-gray-100 dark:bg-gray-900 text-gray-900 dark:text-gray-100">
+      <div className="py-10 flex flex-col items-center bg-gradient-to-b text-gray-900 dark:text-gray-100">
         {/* Heading with Animation */}
         <motion.h3
-          className="subhead-text text-6xl font-extrabold mb-10 text-transparent bg-clip-text bg-gradient-to-r from-purple-500 via-blue-500 to-teal-400 dark:from-purple-400 dark:via-blue-400 dark:to-teal-300 relative"
+          className="subhead-text text-6xl font-extrabold mb-[-0.5rem] text-transparent bg-clip-text bg-gradient-to-r from-purple-500 via-blue-500 to-teal-400 dark:from-purple-400 dark:via-blue-400 dark:to-teal-300 relative"
           initial={{ opacity: 0, y: -100, scale: 0.8 }}
           animate={{ opacity: 1, y: 0, scale: 1 }}
           transition={{
@@ -129,86 +148,117 @@ const About = () => {
             scale: 1.15,
             rotate: 2,
             textShadow: "0 0 20px rgba(128, 90, 213, 0.9)",
-            boxShadow: "0 0 25px rgba(0, 255, 255, 0.6)",
           }}
         >
           <span className="animate-pulse-slow">My Skills</span>
         </motion.h3>
 
         {/* Skill Cards */}
-        <motion.div
-          className="mt-8 grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-12"
-          initial="hidden"
-          animate="visible"
-          variants={{
-            hidden: { opacity: 0 },
-            visible: {
-              opacity: 1,
-              transition: { staggerChildren: 0.15, delayChildren: 0.5 },
-            },
-          }}
-        >
-          {skills.map((skill, index) => (
-            <motion.div
-              key={skill.name}
-              className="relative group w-28 h-28 md:w-32 md:h-32 rounded-xl bg-gradient-to-r from-blue-500 to-teal-400 shadow-xl hover:shadow-2xl cursor-pointer transform-gpu dark:from-gray-700 dark:to-gray-900 dark:shadow-gray-800"
-              variants={{
-                hidden: { scale: 0.8, opacity: 0, y: 50 },
-                visible: { scale: 1, opacity: 1, y: 0 },
-              }}
-              transition={{
-                type: "spring",
-                stiffness: 150,
-                damping: 10,
-              }}
-              whileHover={{
-                scale: 1.3,
-                rotateY: 360,
-                transition: { duration: 0.8, ease: "easeInOut" },
-              }}
-            >
-              {/* Glow Animation */}
-              <motion.div
-                className="absolute inset-0 rounded-xl bg-gradient-to-r from-purple-500 to-blue-500 opacity-30 blur-xl transition-opacity duration-300 dark:from-purple-600 dark:to-blue-600"
+        <div className="p-6 md:p-10">
+          {/* Filter Tabs */}
+          <motion.div
+            className="flex justify-center gap-4 mb-8 flex-wrap"
+            variants={containerVariants}
+            initial="hidden"
+            animate="visible"
+          >
+            {categories.map((category) => (
+              <motion.button
+                key={category}
+                onClick={() => setSelectedCategory(category)}
+                variants={buttonVariants}
                 whileHover={{
-                  opacity: 0.7,
-                  filter: "blur(2.5rem)",
-                  transition: { duration: 0.4 },
+                  scale: 1.1,
+                  rotate: 2,
                 }}
-              />
+                whileTap={{ scale: 0.9 }}
+                className={`px-4 py-2 rounded-xl text-sm font-semibold shadow-md transition-transform duration-300 relative overflow-hidden 
+        ${
+          selectedCategory === category
+            ? "bg-gradient-to-r from-purple-500 to-teal-400 text-white shadow-lg"
+            : "bg-gray-200 dark:bg-gray-700 dark:text-gray-300 text-gray-800"
+        }`}
+              >
+                <span className="relative z-10">{category}</span>
+              </motion.button>
+            ))}
+          </motion.div>
 
-              {/* Skill Icon */}
+          {/* Skills Grid */}
+          <motion.div
+            className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-10"
+            initial="hidden"
+            animate="visible"
+            variants={{
+              hidden: { opacity: 0 },
+              visible: {
+                opacity: 1,
+                transition: { staggerChildren: 0.1, delayChildren: 0.3 },
+              },
+            }}
+          >
+            {filteredSkills.map((skill) => (
               <motion.div
-                className="flex justify-center items-center w-full h-full bg-white rounded-xl group-hover:shadow-lg dark:bg-gray-800"
+                key={skill.name}
+                className="relative group w-28 h-28 md:w-32 md:h-32 rounded-xl bg-gradient-to-r from-blue-500 to-teal-400 shadow-xl hover:shadow-2xl cursor-pointer transform-gpu dark:from-gray-700 dark:to-gray-900 dark:shadow-gray-800"
+                variants={{
+                  hidden: { scale: 0.8, opacity: 0, y: 50 },
+                  visible: { scale: 1, opacity: 1, y: 0 },
+                }}
+                transition={{
+                  type: "spring",
+                  stiffness: 150,
+                  damping: 10,
+                }}
                 whileHover={{
-                  scale: 1.2,
-                  rotateZ: [0, 15, -15, 0],
-                  transition: { duration: 0.5 },
+                  scale: 1.3,
+                  rotateY: 360,
+                  transition: { duration: 0.8, ease: "easeInOut" },
                 }}
               >
-                <img
-                  src={skill.imageUrl}
-                  alt={skill.name}
-                  className="w-2/3 h-2/3 object-contain group-hover:scale-150 transition-transform duration-500"
+                {/* Glow Animation */}
+                <motion.div
+                  className="absolute inset-0 rounded-xl bg-gradient-to-r from-purple-500 to-blue-500 opacity-30 blur-xl transition-opacity duration-300 dark:from-purple-600 dark:to-blue-600"
+                  whileHover={{
+                    opacity: 0.7,
+                    filter: "blur(2.5rem)",
+                    transition: { duration: 0.4 },
+                  }}
                 />
-              </motion.div>
 
-              {/* Skill Name */}
-              <motion.p
-                className="mt-2 text-center text-sm text-slate-700 font-semibold opacity-0 group-hover:opacity-100 group-hover:translate-y-0 transition-all duration-500 dark:text-gray-300"
-                initial={{ opacity: 0, translateY: 10 }}
-                animate={{ opacity: 1, translateY: 0 }}
-                whileHover={{
-                  scale: 1.2,
-                  color: "rgba(128, 90, 213, 1)",
-                  textShadow: "0px 0px 10px rgba(128, 90, 213, 0.8)",
-                }}
-              >
-                {skill.name}
-              </motion.p>
-            </motion.div>
-          ))}
-        </motion.div>
+                {/* Skill Icon */}
+                <motion.div
+                  className="flex justify-center items-center w-full h-full bg-white rounded-xl group-hover:shadow-lg dark:bg-gray-800"
+                  whileHover={{
+                    scale: 1.2,
+                    rotateZ: [0, 15, -15, 0],
+                    transition: { duration: 0.5 },
+                  }}
+                >
+                  <img
+                    src={skill.imageUrl}
+                    alt={skill.name}
+                    className="w-2/3 h-2/3 object-contain group-hover:scale-150 transition-transform duration-500"
+                  />
+                </motion.div>
+
+                {/* Skill Name */}
+                <motion.p
+                  className="mt-2 text-center text-sm text-slate-700 font-semibold opacity-0 group-hover:opacity-100 group-hover:translate-y-0 transition-all duration-500 dark:text-gray-300"
+                  initial={{ opacity: 0, translateY: 10 }}
+                  animate={{ opacity: 1, translateY: 0 }}
+                  whileHover={{
+                    scale: 1.2,
+                    color: "rgba(128, 90, 213, 1)",
+                    textShadow: "0px 0px 10px rgba(128, 90, 213, 0.8)",
+                  }}
+                >
+                  {skill.name}
+                </motion.p>
+              </motion.div>
+            ))}
+          </motion.div>
+        </div>
       </div>
 
       <div className="py-16">

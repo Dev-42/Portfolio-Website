@@ -100,7 +100,7 @@ export const skills = [
   {
     imageUrl: Sequelize,
     name: "Sequelize",
-    type: "ORM",
+    type: "Backend",
   },
   {
     imageUrl: html,
