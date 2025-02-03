@@ -116,24 +116,25 @@ export const skills = [
 
 export const experiences = [
   {
-    title: "React.js Intern Developer",
-    company_name: "PW Skills",
-    icon: starbucks,
+    title: "Software Developer",
+    company_name: "CureValue",
+    icon: "",
     iconBg: "#accbe1",
-    date: "August 2024 - present",
+    date: "January 2024 - January 2025",
     points: [
-      "Developing and maintaining web applications using React.js and other related technologies.",
-      "Collaborating with cross-functional teams including designers, product managers, and other developers to create high-quality products.",
-      "Implementing responsive design and ensuring cross-browser compatibility.",
-      "Participating in code reviews and providing constructive feedback to other developers.",
+      "Migrated ReactJS to NextJS – Boosted SEO & performance. Optimized APIs in Node.js & MongoDB for faster data retrieval.",
+      "Enhanced Features & UI – Built facility comparison, interactive maps, clustering, dynamic filters, and responsive UI. Improved search & onboarding.",
+      "Automated Database Management – Wrote scripts for doctor profiles & metadata updates. Optimized AWS S3 image handling & data filtering.",
+      "SEO & Analytics – Implemented SEMrush SEO, JSON-LD metadata, OpenGraph & Twitter cards. Integrated Hotjar for user insights.",
+      "Bug Fixes & Optimization – Resolved UI bugs, crashes, and data inconsistencies. Optimized localStorage-based facility comparison.",
     ],
   },
   {
-    title: "Learning MERN Stack",
-    company_name: "PW skills",
+    title: "Exploring MERN Stack",
+    company_name: "Physics Wallah Skills",
     icon: tesla,
     iconBg: "#fbc3bc",
-    date: "Jan 2024 - Dec 2024",
+    date: "July 2023 - December 2023",
     points: [
       "Developing and maintaining web applications using React.js and other related technologies.",
       "Collaborating with multiple students to develop multiple projects in several domains of web development.",

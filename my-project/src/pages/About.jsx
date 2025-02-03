@@ -151,6 +151,7 @@ const About = () => {
           }}
         >
           <span className="animate-pulse-slow">My Skills</span>
+          <span className="text-gray-900 dark:text-gray-100">🛠️</span>
         </motion.h3>
 
         {/* Skill Cards */}
@@ -260,53 +261,157 @@ const About = () => {
           </motion.div>
         </div>
       </div>
+      {/* Work Experience */}
+      <div className="py-10 flex flex-col items-center bg-gradient-to-b text-gray-900 dark:text-gray-100">
+        <motion.h3
+          className="subhead-text text-6xl font-extrabold mb-[-0.5rem] text-transparent bg-clip-text bg-gradient-to-r from-purple-500 via-blue-500 to-teal-400 dark:from-purple-400 dark:via-blue-400 dark:to-teal-300 relative"
+          initial={{ opacity: 0, y: -100, scale: 0.8 }}
+          animate={{ opacity: 1, y: 0, scale: 1 }}
+          transition={{
+            duration: 1.2,
+            ease: "easeOut",
+            type: "spring",
+            stiffness: 70,
+          }}
+          whileHover={{
+            scale: 1.15,
+            rotate: 2,
+            textShadow: "0 0 20px rgba(128, 90, 213, 0.9)",
+          }}
+        >
+          <span className="animate-pulse-slow">Work Experience</span>
+          <span className="text-gray-900 dark:text-gray-100"> 💼</span>
+        </motion.h3>
+        <motion.div
+          className="mt-5 flex flex-col gap-4"
+          initial={{ opacity: 0, y: 50 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{
+            duration: 1.2,
+            ease: "easeOut",
+            type: "spring",
+            stiffness: 80,
+          }}
+        >
+          <motion.p
+            initial={{ opacity: 0, x: -50, scale: 0.8 }}
+            animate={{ opacity: 1, x: 0, scale: 1 }}
+            transition={{
+              delay: 0.2,
+              duration: 1,
+              type: "spring",
+              stiffness: 100,
+            }}
+            whileHover={{
+              scale: 1.08,
+              textShadow:
+                "0 0 12px rgba(0, 0, 0, 0.5), 0 0 20px rgba(0, 255, 255, 0.8)",
+            }}
+            className="leading-relaxed text-gray-800 dark:text-gray-200 bg-gradient-to-r from-gray-900 via-gray-600 to-gray-900 dark:from-gray-100 dark:via-gray-300 dark:to-gray-100 bg-clip-text text-transparent font-size:20px"
+          >
+            I have over <strong>1 year of experience</strong> as a{" "}
+            <strong>Software Developer</strong> in the <strong>USA</strong>,
+            where I honed my skills in <strong>full-stack development</strong>,
+            collaborated with highly skilled teams, and worked on{" "}
+            <strong>scalable, real-world applications</strong>. During my time
+            there, I gained hands-on experience with{" "}
+            <strong>cutting-edge technologies</strong>, optimized performance
+            for <strong>high-traffic applications</strong>, and contributed to
+            building robust, efficient solutions that enhanced user experiences.
+          </motion.p>
 
-      <div className="py-16">
-        <h3 className="subhead-text">Work Experience</h3>
-        <div className="mt-5 flex flex-col gap-3 text-slate-500">
-          <p>
-            I am currently working with a companany from where I am levelling up
-            my skills and teaming up with smart people.Here's the rundown :
-          </p>
-        </div>
-        <div className="mt-12 flex">
+          <motion.p
+            initial={{ opacity: 0, x: 50, scale: 0.8 }}
+            animate={{ opacity: 1, x: 0, scale: 1 }}
+            transition={{
+              delay: 0.4,
+              duration: 1,
+              type: "spring",
+              stiffness: 100,
+            }}
+            whileHover={{
+              textShadow:
+                "0 0 15px rgba(0, 200, 0, 0.8), 0 0 25px rgba(0, 255, 255, 0.8)",
+            }}
+            className="text-lg font-semibold text-gray-900 dark:text-teal-400 flex items-center gap-2"
+          >
+            🚀 Here's a rundown of my journey and key contributions:
+          </motion.p>
+        </motion.div>
+        <motion.div
+          className="mt-12 flex justify-center"
+          initial={{ opacity: 0, y: 50, scale: 0.9 }}
+          animate={{ opacity: 1, y: 0, scale: 1 }}
+          transition={{ duration: 1.2, ease: "easeOut" }}
+        >
           <VerticalTimeline>
-            {experiences.map((experience) => (
+            {experiences.map((experience, index) => (
               <VerticalTimelineElement
                 key={experience.company_name}
                 date={experience.date}
+                iconStyle={{
+                  background: experience.iconBg,
+                  color: "#fff",
+                  boxShadow: "0px 0px 20px rgba(255, 255, 255, 0.8)",
+                  transform: "scale(1.1)",
+                }}
                 contentStyle={{
-                  borderBottom: "8px",
-                  borderStyle: "solid",
-                  borderBottomColor: experience.iconBg,
-                  boxShadow: "none",
+                  background: "rgba(20, 20, 20, 0.9)",
+                  backdropFilter: "blur(15px)",
+                  WebkitBackdropFilter: "blur(15px)",
+                  borderRadius: "20px",
+                  border: `2px solid ${experience.iconBg}`,
+                  boxShadow: "0px 4px 30px rgba(255, 255, 255, 0.3)",
+                  transition: "transform 0.3s ease-in-out",
+                }}
+                contentArrowStyle={{
+                  borderRight: "7px solid rgba(255, 255, 255, 0.5)",
                 }}
               >
-                <div>
-                  <h3 className="text-black text-xl font-poppins font-semibold">
+                <motion.div
+                  initial={{ y: 30, opacity: 0 }}
+                  animate={{ y: 0, opacity: 1 }}
+                  transition={{
+                    duration: 0.8,
+                    delay: index * 0.2,
+                    ease: "backOut",
+                  }}
+                >
+                  <h3 className="text-white text-3xl font-extrabold tracking-wide neon-glow">
                     {experience.title}
                   </h3>
-                  <p
-                    className="text-black-500 font-medium font-base"
-                    style={{ margin: 0 }}
-                  >
+                  <p className="text-gray-300 text-lg font-semibold">
                     {experience.company_name}
                   </p>
-                </div>
-                <ul className="my-5 list-disc ml-5 space-y-2">
-                  {experience.points.map((point, index) => (
-                    <li
-                      key={`experience-point-${index}`}
-                      className="text-black-500/50 font-normal pl-1 text-sm"
+                </motion.div>
+
+                <motion.ul
+                  className="my-5 list-disc ml-5 space-y-3"
+                  initial={{ opacity: 0, x: -30 }}
+                  animate={{ opacity: 1, x: 0 }}
+                  transition={{ duration: 0.7, delay: index * 0.3 }}
+                >
+                  {experience.points.map((point, idx) => (
+                    <motion.li
+                      key={`experience-point-${idx}`}
+                      className="text-gray-300 text-sm leading-relaxed transition-all duration-300 ease-in-out"
+                      initial={{ opacity: 0, x: -20 }}
+                      animate={{ opacity: 1, x: 0 }}
+                      transition={{ duration: 0.5, delay: idx * 0.1 }}
+                      whileHover={{
+                        scale: 1.1,
+                        color: "#fff",
+                        textShadow: "0px 0px 15px rgba(255, 255, 255, 1)",
+                      }}
                     >
                       {point}
-                    </li>
+                    </motion.li>
                   ))}
-                </ul>
+                </motion.ul>
               </VerticalTimelineElement>
             ))}
           </VerticalTimeline>
-        </div>
+        </motion.div>
       </div>
       <hr className="border-slate-200" />
       <div className="py-16">
