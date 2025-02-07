@@ -1,10 +1,10 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import {
   VerticalTimeline,
   VerticalTimelineElement,
 } from "react-vertical-timeline-component";
 import "react-vertical-timeline-component/style.min.css";
-import { motion } from "framer-motion";
+import { motion, useMotionValue, useTransform } from "framer-motion";
 import { skills, experiences } from "../constants";
 import Leetcode from "../assets/images/Leetcode.png";
 import GitHub from "../assets/images/Github.png";
@@ -70,6 +70,41 @@ const About = () => {
 
   const aboutText =
     "I'm a passionate MERN Stack Developer with hands-on experience in building scalable web applications and solving complex problems. With 360+ LeetCode solutions under my belt, I thrive on tackling challenging algorithms and enhancing system performance. I’m an immediate joiner, eager to collaborate, innovate, and drive impactful tech solutions forward.";
+  const [dimensions, setDimensions] = useState({ width: 0, height: 0 });
+
+  // Mouse position values
+  const x = useMotionValue(0);
+  const y = useMotionValue(0);
+
+  // Rotate effect based on mouse movement
+  const rotateX = useTransform(y, [-1, 1], [-10, 10]); // Tilt on Y-axis
+  const rotateY = useTransform(x, [-1, 1], [10, -10]); // Tilt on X-axis
+
+  // Capture container dimensions
+  useEffect(() => {
+    const updateSize = () => {
+      setDimensions({
+        width: window.innerWidth,
+        height: window.innerHeight,
+      });
+    };
+    window.addEventListener("resize", updateSize);
+    updateSize();
+    return () => window.removeEventListener("resize", updateSize);
+  }, []);
+
+  // Handle mouse movement
+  const handleMouseMove = (e) => {
+    const { clientX, clientY } = e;
+    const { width, height } = dimensions;
+
+    // Normalize values to range (-1 to 1)
+    const xValue = (clientX / width) * 2 - 1;
+    const yValue = (clientY / height) * 2 - 1;
+
+    x.set(xValue);
+    y.set(yValue);
+  };
   return (
     <section className="max-container bg-gray-100 dark:bg-gray-900 text-gray-900 dark:text-gray-100">
       <div className="hidden md:block"></div>
@@ -117,6 +152,12 @@ const About = () => {
         initial="hidden"
         animate="visible"
         variants={containerVariants}
+        style={{
+          rotateX,
+          rotateY,
+          transformPerspective: 1000, // Creates 3D depth effect
+        }}
+        onMouseMove={handleMouseMove}
       >
         {aboutText.split(" ").map((word, index) => (
           <motion.span
@@ -126,7 +167,9 @@ const About = () => {
             whileHover={{
               scale: 1.2,
               color: "#1d4ed8", // Blue on hover
+              textShadow: "0px 0px 8px rgba(29, 78, 216, 0.8)", // Glow effect
             }}
+            transition={{ type: "spring", stiffness: 150 }}
           >
             {word}
           </motion.span>
@@ -414,27 +457,109 @@ const About = () => {
         </motion.div>
       </div>
       <hr className="border-slate-200" />
-      <div className="py-16">
-        <h3 className="subhead-text">Competitive Programming</h3>
-        <div className="mt-5 flex flex-col gap-3 text-slate-500">
-          <p>
-            My competitive programming journey is far from ordinary. While many
-            pursue it to secure a job, my motivation comes from a genuine love
-            for problem-solving and understanding the "why" behind every
-            challenge. This relentless curiosity and passion for thinking deeply
-            set me apart and drive my continuous growth in the field.
-          </p>
-          <div className="mt-[15px] flex flex-col items-center">
-            <img src={Leetcode} alt="Leetcode Image" />
-            <a
-              href="https://leetcode.com/u/dev_42/"
-              className="mt-[12px] text-[24px] items-center text-blue-500"
-              target="_blank"
-            >
-              Leetcode
-            </a>
-          </div>
-        </div>
+      {/* Competitive programming section*/}
+      <div className="py-10 flex flex-col items-center bg-gradient-to-b text-gray-900 dark:text-gray-100">
+        <motion.h3
+          className="subhead-text text-6xl font-extrabold mb-[-0.5rem] text-transparent bg-clip-text bg-gradient-to-r from-purple-500 via-blue-500 to-teal-400 dark:from-purple-400 dark:via-blue-400 dark:to-teal-300 relative"
+          initial={{ opacity: 0, y: -100, scale: 0.8 }}
+          animate={{ opacity: 1, y: 0, scale: 1 }}
+          transition={{
+            duration: 1.2,
+            ease: "easeOut",
+            type: "spring",
+            stiffness: 70,
+          }}
+          whileHover={{
+            scale: 1.15,
+            rotate: 2,
+            textShadow: "0 0 20px rgba(128, 90, 213, 0.9)",
+          }}
+        >
+          <span className="animate-pulse-slow">Competitive Programming</span>
+          <span className="text-gray-900 dark:text-gray-100"> 💡</span>
+        </motion.h3>
+
+        <motion.div
+          className="mt-5 flex flex-col gap-4 text-center"
+          initial={{ opacity: 0, y: 50 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{
+            duration: 1.2,
+            ease: "easeOut",
+            type: "spring",
+            stiffness: 80,
+          }}
+        >
+          <motion.p
+            initial={{ opacity: 0, x: -50, scale: 0.8 }}
+            animate={{ opacity: 1, x: 0, scale: 1 }}
+            transition={{
+              delay: 0.2,
+              duration: 1,
+              type: "spring",
+              stiffness: 100,
+            }}
+            whileHover={{
+              scale: 1.08,
+              textShadow:
+                "0 0 12px rgba(0, 0, 0, 0.5), 0 0 20px rgba(0, 255, 255, 0.8)",
+            }}
+            className="leading-relaxed text-gray-800 dark:text-gray-200 bg-gradient-to-r from-gray-900 via-gray-600 to-gray-900 dark:from-gray-100 dark:via-gray-300 dark:to-gray-100 bg-clip-text text-transparent text-lg"
+          >
+            My journey in competitive programming is driven by an unwavering{" "}
+            <strong>passion</strong> for problem-solving and a deep curiosity
+            about the <strong>'why'</strong> behind every challenge. Rather than
+            treating it as a means to a job, I see it as a{" "}
+            <strong>playground for intellectual growth</strong>—where I push
+            boundaries, refine my <strong>analytical skills</strong>, and
+            continuously evolve as a <strong>problem-solver</strong>. This
+            mindset not only sharpens my <strong>technical abilities</strong>{" "}
+            but also equips me to tackle{" "}
+            <strong>complex, real-world challenges</strong> with creativity and
+            efficiency
+          </motion.p>
+        </motion.div>
+
+        <motion.div
+          className="mt-10 flex flex-col items-center"
+          initial={{ opacity: 0, y: 50, scale: 0.85 }}
+          animate={{ opacity: 1, y: 0, scale: 1 }}
+          transition={{
+            duration: 1.2,
+            ease: "easeOut",
+            type: "spring",
+            stiffness: 100,
+          }}
+          whileHover={{ scale: 1.02 }}
+          onMouseMove={handleMouseMove}
+        >
+          <motion.img
+            src={Leetcode}
+            alt="Leetcode Profile"
+            className="w-[100%] h-[100%] object-cover rounded-lg shadow-lg"
+            style={{
+              rotateX,
+              rotateY,
+              transformPerspective: 800, // Gives 3D depth effect
+            }}
+            whileHover={{ scale: 1.05 }}
+            transition={{ duration: 0.4, ease: "easeInOut" }}
+          />
+
+          <motion.a
+            href="https://leetcode.com/u/dev_42/"
+            className="mt-4 text-2xl font-bold text-blue-500 hover:text-blue-600 dark:hover:text-blue-400 transition duration-300"
+            target="_blank"
+            whileHover={{
+              scale: 1.15,
+              textShadow: "0px 0px 12px rgba(59, 130, 246, 1)",
+              transition: { duration: 0.3, yoyo: Infinity },
+            }}
+            whileTap={{ scale: 0.9 }}
+          >
+            🚀 Leetcode Profile
+          </motion.a>
+        </motion.div>
       </div>
       <hr className="border-slate-200" />
       <div className="py-16">
