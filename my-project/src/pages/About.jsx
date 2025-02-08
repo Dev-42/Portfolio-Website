@@ -562,26 +562,116 @@ const About = () => {
         </motion.div>
       </div>
       <hr className="border-slate-200" />
-      <div className="py-16">
-        <h3 className="subhead-text">Github Stats</h3>
-        <div className="mt-5 flex flex-col gap-3 text-slate-500">
-          <p>
-            Web development is not just about building websites; it's about
-            creating experiences and solving problems. This GitHub profile
-            demonstrates my passion for creating and committing to projects in
-            every field of web development.
-          </p>
-          <div className="mt-[15px] flex flex-col items-center">
-            <img src={GitHub} alt="Github Stats" />
-            <a
-              href="https://github.com/Dev-42?tab=overview&from=2022-12-01&to=2022-12-31"
-              className="mt-[12px] text-[24px] items-center text-blue-500"
-              target="_blank"
-            >
-              Github
-            </a>
-          </div>
-        </div>
+      {/* Github Section */}
+      <div className="py-10 flex flex-col items-center bg-gradient-to-b text-gray-900 dark:text-gray-100">
+        <motion.h3
+          className="subhead-text text-6xl font-extrabold mb-[-0.5rem] text-transparent bg-clip-text bg-gradient-to-r from-purple-500 via-blue-500 to-teal-400 dark:from-purple-400 dark:via-blue-400 dark:to-teal-300 relative"
+          initial={{ opacity: 0, y: -100, scale: 0.8 }}
+          animate={{ opacity: 1, y: 0, scale: 1 }}
+          transition={{
+            duration: 1.2,
+            ease: "easeOut",
+            type: "spring",
+            stiffness: 70,
+          }}
+          whileHover={{
+            scale: 1.15,
+            rotate: 2,
+            textShadow: "0 0 20px rgba(128, 90, 213, 0.9)",
+          }}
+        >
+          <span className="animate-pulse-slow">GitHub Stats</span>
+          <span className="text-gray-900 dark:text-gray-100"> 🚀</span>
+        </motion.h3>
+
+        <motion.div
+          className="mt-5 flex flex-col gap-4 text-center"
+          initial={{ opacity: 0, y: 50 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{
+            duration: 1.2,
+            ease: "easeOut",
+            type: "spring",
+            stiffness: 80,
+          }}
+        >
+          <motion.p
+            initial={{ opacity: 0, x: -50, scale: 0.8 }}
+            animate={{ opacity: 1, x: 0, scale: 1 }}
+            transition={{
+              delay: 0.2,
+              duration: 1,
+              type: "spring",
+              stiffness: 100,
+            }}
+            whileHover={{
+              scale: 1.08,
+              textShadow:
+                "0 0 12px rgba(0, 0, 0, 0.5), 0 0 20px rgba(0, 255, 255, 0.8)",
+            }}
+            className="leading-relaxed text-gray-800 dark:text-gray-200 bg-gradient-to-r from-gray-900 via-gray-600 to-gray-900 dark:from-gray-100 dark:via-gray-300 dark:to-gray-100 bg-clip-text text-transparent text-lg"
+          >
+            <strong>Web development</strong> is more than just writing code—it's
+            about <strong>architecting engaging digital experiences</strong> and{" "}
+            <strong>engineering scalable, high-performance solutions</strong>{" "}
+            that solve <strong>real-world challenges</strong>. My{" "}
+            <strong>GitHub profile</strong> isn't just a collection of
+            repositories; it's a <strong>blueprint of innovation</strong>, where
+            I{" "}
+            <strong>
+              experiment with cutting-edge technologies, optimize performance,
+              and build solutions that matter
+            </strong>
+            . From <strong>intuitive UI/UX designs</strong> to{" "}
+            <strong>robust backend systems</strong>, every project reflects my{" "}
+            <strong>
+              commitment to excellence, problem-solving mindset, and
+              adaptability
+            </strong>{" "}
+            in an <strong>ever-evolving tech landscape</strong>.
+            <strong>Recruiters</strong>, if you're looking for someone who{" "}
+            <strong>
+              thrives on pushing boundaries and delivering impact-driven
+              software
+            </strong>
+            , let's connect! 🚀
+          </motion.p>
+        </motion.div>
+
+        <motion.div
+          className="mt-10 flex flex-col items-center"
+          initial={{ opacity: 0, y: 50, scale: 0.85 }}
+          animate={{ opacity: 1, y: 0, scale: 1 }}
+          transition={{
+            duration: 1.2,
+            ease: "easeOut",
+            type: "spring",
+            stiffness: 100,
+          }}
+          whileHover={{ scale: 1.02 }}
+        >
+          <motion.img
+            src={GitHub}
+            alt="GitHub Stats"
+            className="w-[100%] h-[100%] object-cover rounded-lg shadow-lg"
+            whileHover={{ scale: 1.05 }}
+            transition={{ duration: 0.4, ease: "easeInOut" }}
+          />
+
+          <motion.a
+            href="https://github.com/Dev-42?tab=overview&from=2022-12-01&to=2022-12-31"
+            className="mt-4 text-2xl font-bold text-blue-500 hover:text-blue-600 dark:hover:text-blue-400 transition duration-300"
+            target="_blank"
+            whileHover={{
+              scale: 1.15,
+              textShadow: "0px 0px 12px rgba(59, 130, 246, 1)",
+              transition: { duration: 0.3, yoyo: Infinity },
+            }}
+            whileTap={{ scale: 0.9 }}
+          >
+            🌟 Visit My GitHub Profile
+          </motion.a>
+        </motion.div>
       </div>
       <hr className="border-slate-200" />
       <CTA />
