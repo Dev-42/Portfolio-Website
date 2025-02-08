@@ -4,7 +4,7 @@ import CTA from "../components/CTA";
 import { projects } from "../constants/index";
 import { arrow } from "../assets/icons";
 import DarkModeToggle from "../components/ToggleButton";
-import { motion } from "framer-motion";
+import { motion, useMotionValue, useTransform } from "framer-motion";
 import { useInView } from "react-intersection-observer";
 import { FaGithub } from "react-icons/fa"; // GitHub Icon
 import { FiGlobe } from "react-icons/fi"; // Globe Icon for Live Link
@@ -20,6 +20,14 @@ const Projects = () => {
       },
     },
   };
+  const wordVariants = {
+    hidden: { opacity: 0, y: 20 },
+    visible: {
+      opacity: 1,
+      y: 0,
+      transition: { duration: 0.5, ease: "easeOut" },
+    },
+  };
   const word = {
     hidden: { opacity: 0, y: "50%" },
     visible: {
@@ -28,7 +36,40 @@ const Projects = () => {
       transition: { type: "spring", stiffness: 200, damping: 20 },
     },
   };
+  const [dimensions, setDimensions] = useState({ width: 0, height: 0 });
 
+  // Mouse position values
+  const x = useMotionValue(0);
+  const y = useMotionValue(0);
+
+  // Rotate effect based on mouse movement
+  const rotateX = useTransform(y, [-1, 1], [-10, 10]); // Tilt on Y-axis
+  const rotateY = useTransform(x, [-1, 1], [10, -10]); // Tilt on X-axis
+  // Capture container dimensions
+  useEffect(() => {
+    const updateSize = () => {
+      setDimensions({
+        width: window.innerWidth,
+        height: window.innerHeight,
+      });
+    };
+    window.addEventListener("resize", updateSize);
+    updateSize();
+    return () => window.removeEventListener("resize", updateSize);
+  }, []);
+
+  // Handle mouse movement
+  const handleMouseMove = (e) => {
+    const { clientX, clientY } = e;
+    const { width, height } = dimensions;
+
+    // Normalize values to range (-1 to 1)
+    const xValue = (clientX / width) * 2 - 1;
+    const yValue = (clientY / height) * 2 - 1;
+
+    x.set(xValue);
+    y.set(yValue);
+  };
   return (
     <div className="w-full">
       <section className="max-container bg-gray-100 dark:bg-gray-900 text-gray-900 dark:text-gray-100">
@@ -72,7 +113,7 @@ const Projects = () => {
           />
         </motion.h1>
         {/* Some text */}
-        <motion.div
+        {/* <motion.div
           className="text-slate-500 mt-[28px] leading-relaxed text-center"
           initial="hidden"
           animate="visible"
@@ -89,6 +130,34 @@ const Projects = () => {
               }}
             >
               {wordText}
+            </motion.span>
+          ))}
+        </motion.div> */}
+        <motion.div
+          className="mt-5 flex flex-wrap gap-3 text-slate-500 leading-relaxed text-center"
+          initial="hidden"
+          animate="visible"
+          variants={container}
+          style={{
+            rotateX,
+            rotateY,
+            transformPerspective: 1000, // Creates 3D depth effect
+          }}
+          onMouseMove={handleMouseMove}
+        >
+          {text.split(" ").map((word, index) => (
+            <motion.span
+              key={index}
+              variants={wordVariants}
+              className="inline-block mx-1 md:text-[20px]"
+              whileHover={{
+                scale: 1.2,
+                color: "#1d4ed8", // Blue on hover
+                textShadow: "0px 0px 8px rgba(29, 78, 216, 0.8)", // Glow effect
+              }}
+              transition={{ type: "spring", stiffness: 150 }}
+            >
+              {word}
             </motion.span>
           ))}
         </motion.div>
