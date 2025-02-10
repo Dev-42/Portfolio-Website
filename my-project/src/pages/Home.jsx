@@ -82,10 +82,13 @@ const Home = () => {
       return;
     }
 
-    // Ensure the phone number includes the country code
     const formattedPhoneNumber = phoneNumber.startsWith("+")
       ? phoneNumber
       : `+91${phoneNumber}`;
+
+    // Test with a simple message first
+    const message =
+      "Hey there! 👋 I came across your profile and would love to connect. Let’s chat and make something amazing happen! 🚀🔥";
 
     window.open(
       `https://wa.me/${formattedPhoneNumber}?text=${encodeURIComponent(
