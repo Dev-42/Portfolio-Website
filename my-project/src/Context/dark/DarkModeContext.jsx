@@ -4,7 +4,7 @@ const DarkModeContext = createContext();
 
 export const DarkModeProvider = ({ children }) => {
   const [isDarkMode, setIsDarkMode] = useState(
-    () => JSON.parse(localStorage.getItem("darkMode")) || false
+    () => JSON.parse(localStorage.getItem("darkMode")) || true
   );
 
   useEffect(() => {
