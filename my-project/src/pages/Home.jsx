@@ -79,8 +79,20 @@ const Home = () => {
   const handleWhatsAppClick = () => {
     if (!phoneNumber) {
       navigate("/about");
+      return;
     }
-    window.open(`https://wa.me/${phoneNumber}?text=${message}`, "_blank");
+
+    // Ensure the phone number includes the country code
+    const formattedPhoneNumber = phoneNumber.startsWith("+")
+      ? phoneNumber
+      : `+91${phoneNumber}`;
+
+    window.open(
+      `https://wa.me/${formattedPhoneNumber}?text=${encodeURIComponent(
+        message
+      )}`,
+      "_blank"
+    );
   };
 
   return (
