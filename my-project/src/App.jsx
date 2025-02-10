@@ -3,7 +3,7 @@ import { Routes, BrowserRouter, Route } from "react-router-dom";
 import Home from "./pages/Home";
 import About from "./pages/About";
 import Projects from "./pages/Projects";
-import Contacts from "./pages/Contact";
+import Contact from "./pages/Contact";
 import Navbar from "./components/Navbar";
 import { HelmetProvider } from "react-helmet-async";
 import DarkModeToggle from "./components/ToggleButton";
@@ -18,7 +18,7 @@ const App = () => {
             <Route path="/" element={<Home />}></Route>
             <Route path="/about" element={<About />}></Route>
             <Route path="/projects" element={<Projects />}></Route>
-            <Route path="/contact" element={<Contacts />}></Route>
+            <Route path="/contact" element={<Contact />}></Route>
           </Routes>
         </BrowserRouter>
       </main>
