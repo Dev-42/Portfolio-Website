@@ -69,6 +69,18 @@ const Home = () => {
     };
   }, []);
 
+  const phoneNumber = import.meta.env.VITE_PHONE_NUMBER;
+  const message = encodeURIComponent(
+    "Hey there! 👋 I came across your profile and would love to connect. Let’s chat and make something amazing happen! 🚀🔥"
+  );
+
+  const handleWhatsAppClick = () => {
+    if (!phoneNumber) {
+      navigate("/about");
+    }
+    window.open(`https://wa.me/${phoneNumber}?text=${message}`, "_blank");
+  };
+
   return (
     <div className="relative w-full overflow-hidden h-screen bg-gradient-to-b from-indigo-900 via-gray-900 to-black text-white">
       {/* Twinkling Stars Background */}
@@ -88,15 +100,13 @@ const Home = () => {
         <motion.img
           src={ProfileImage}
           alt="Profile"
-          className="rounded-full w-40 h-40 border-4 shadow-lg"
+          className="rounded-full w-40 h-40 border-4 shadow-lg select-none"
           style={{
             boxShadow:
               "0 0 30px rgba(0,255,255,0.7), 0 0 60px rgba(0,255,255,0.5)",
           }}
-          // animate={{
-          //   y: [0, -10, 0],
-          //   rotateZ: [-3, 3, -3],
-          // }}
+          draggable={false} // Disable image dragging
+          onContextMenu={(e) => e.preventDefault()} // Disable right-click
           transition={{
             duration: 3,
             repeat: Infinity,
@@ -285,9 +295,9 @@ const Home = () => {
               repeat: Infinity,
               repeatType: "mirror",
             }}
-            onClick={() => navigate("/projects")}
+            onClick={() => navigate("/about")}
           >
-            Explore My Work
+            Explore More
           </motion.button>
 
           {/* Contact Button */}
@@ -310,7 +320,7 @@ const Home = () => {
               repeat: Infinity,
               repeatType: "mirror",
             }}
-            onClick={() => navigate("/contact")}
+            onClick={handleWhatsAppClick}
           >
             Contact Me
           </motion.button>
