@@ -9,7 +9,8 @@ import Particles from "@tsparticles/react";
 import Typewriter from "typewriter-effect";
 import { useNavigate } from "react-router-dom";
 import { FaLinkedin, FaInstagram, FaGithub, FaTwitter } from "react-icons/fa";
-
+import { IoLogoWhatsapp } from "react-icons/io";
+import { FiArrowRightCircle } from "react-icons/fi";
 const Home = () => {
   const navigate = useNavigate();
   const audioRef = useRef(new Audio(sakura));
@@ -281,7 +282,7 @@ const Home = () => {
         <div className="flex gap-6 mt-[22px]">
           {/* Explore My Work Button */}
           <motion.button
-            className="px-6 py-3 bg-gradient-to-r from-blue-500 to-blue-800 text-white rounded-lg shadow-md"
+            className="flex items-center justify-center gap-2 px-6 py-3 bg-gradient-to-r from-blue-500 to-blue-800 text-white rounded-lg shadow-md text-lg font-semibold"
             animate={{
               scale: [1, 1.05, 1],
               boxShadow: ["0px 0px 10px #FFD700", "0px 0px 20px #FF00FF"],
@@ -297,12 +298,13 @@ const Home = () => {
             }}
             onClick={() => navigate("/about")}
           >
-            Explore More
+            Explore More{" "}
+            <FiArrowRightCircle className="w-5 h-5 animate-bounce" />
           </motion.button>
 
           {/* Contact Button */}
           <motion.button
-            className="px-6 py-3 bg-gradient-to-r from-green-500 to-teal-600 text-white rounded-lg shadow-md"
+            className="flex items-center justify-center gap-2 px-6 py-3 bg-gradient-to-r from-green-500 to-teal-600 text-white rounded-lg shadow-md text-lg font-semibold"
             animate={{
               scale: [1, 1.05, 1],
               boxShadow: [
@@ -322,7 +324,7 @@ const Home = () => {
             }}
             onClick={handleWhatsAppClick}
           >
-            Contact Me
+            <IoLogoWhatsapp className="w-5 h-5 animate-pulse" /> Contact Me
           </motion.button>
         </div>
       </section>
