@@ -11,6 +11,7 @@ import {
   javascript,
   linkedin,
   mongodb,
+  SQLite,
   motion,
   mui,
   nextjs,
@@ -24,18 +25,52 @@ import {
   tailwindcss,
   threads,
   typescript,
+  materialUI,
+  contentful,
+  Bludit,
+  Sequelize,
 } from "../assets/icons";
 
 export const skills = [
   {
-    imageUrl: css,
-    name: "CSS",
+    imageUrl: nextjs,
+    name: "Next.js",
+    type: "FullStack",
+  },
+  {
+    imageUrl: react,
+    name: "React",
     type: "Frontend",
   },
   {
-    imageUrl: express,
-    name: "Express",
-    type: "Backend",
+    imageUrl: typescript,
+    name: "TypeScript",
+    type: "Frontend",
+  },
+  {
+    imageUrl: javascript,
+    name: "JavaScript",
+    type: "Frontend",
+  },
+  {
+    imageUrl: contentful,
+    name: "Contentful",
+    type: "CMS",
+  },
+  {
+    imageUrl: Bludit,
+    name: "Bludit",
+    type: "CMS",
+  },
+  {
+    imageUrl: materialUI,
+    name: "Material UI",
+    type: "Frontend",
+  },
+  {
+    imageUrl: tailwindcss,
+    name: "Tailwind CSS",
+    type: "Frontend",
   },
   {
     imageUrl: git,
@@ -43,19 +78,14 @@ export const skills = [
     type: "Version Control",
   },
   {
-    imageUrl: github,
-    name: "GitHub",
-    type: "Version Control",
+    imageUrl: express,
+    name: "Express",
+    type: "Backend",
   },
   {
-    imageUrl: html,
-    name: "HTML",
-    type: "Frontend",
-  },
-  {
-    imageUrl: javascript,
-    name: "JavaScript",
-    type: "Frontend",
+    imageUrl: SQLite,
+    name: "SQLite",
+    type: "Database",
   },
   {
     imageUrl: mongodb,
@@ -68,42 +98,43 @@ export const skills = [
     type: "Backend",
   },
   {
-    imageUrl: react,
-    name: "React",
+    imageUrl: Sequelize,
+    name: "Sequelize",
+    type: "Backend",
+  },
+  {
+    imageUrl: html,
+    name: "HTML",
     type: "Frontend",
   },
   {
-    imageUrl: redux,
-    name: "Redux",
-    type: "State Management",
-  },
-  {
-    imageUrl: tailwindcss,
-    name: "Tailwind CSS",
+    imageUrl: css,
+    name: "CSS",
     type: "Frontend",
   },
 ];
 
 export const experiences = [
   {
-    title: "React.js Intern Developer",
-    company_name: "PW Skills",
-    icon: starbucks,
+    title: "Software Developer",
+    company_name: "CureValue",
+    icon: "",
     iconBg: "#accbe1",
-    date: "August 2024 - present",
+    date: "January 2024 - January 2025",
     points: [
-      "Developing and maintaining web applications using React.js and other related technologies.",
-      "Collaborating with cross-functional teams including designers, product managers, and other developers to create high-quality products.",
-      "Implementing responsive design and ensuring cross-browser compatibility.",
-      "Participating in code reviews and providing constructive feedback to other developers.",
+      "Migrated ReactJS to NextJS – Boosted SEO & performance. Optimized APIs in Node.js & MongoDB for faster data retrieval.",
+      "Enhanced Features & UI – Built facility comparison, interactive maps, clustering, dynamic filters, and responsive UI. Improved search & onboarding.",
+      "Automated Database Management – Wrote scripts for doctor profiles & metadata updates. Optimized AWS S3 image handling & data filtering.",
+      "SEO & Analytics – Implemented SEMrush SEO, JSON-LD metadata, OpenGraph & Twitter cards. Integrated Hotjar for user insights.",
+      "Bug Fixes & Optimization – Resolved UI bugs, crashes, and data inconsistencies. Optimized localStorage-based facility comparison.",
     ],
   },
   {
-    title: "Learning MERN Stack",
-    company_name: "PW skills",
+    title: "Exploring MERN Stack",
+    company_name: "Physics Wallah Skills",
     icon: tesla,
     iconBg: "#fbc3bc",
-    date: "Jan 2024 - Dec 2024",
+    date: "July 2023 - December 2023",
     points: [
       "Developing and maintaining web applications using React.js and other related technologies.",
       "Collaborating with multiple students to develop multiple projects in several domains of web development.",
@@ -138,7 +169,8 @@ export const projects = [
     name: "StockInsight Pro",
     description:
       "Developed an advanced AI-driven web application for fundamental stock analysis using ReactJS and the Gemini API, providing investors with precise valuations and actionable insights they can rely on for the next five years.The most trusted tool for the investors worldwide.",
-    link: "https://github.com/Dev-42/A.I-Stock-Prediction-Tool-",
+    githubLink: "https://github.com/Dev-42/A.I-Stock-Prediction-Tool-",
+    link: "https://a-i-stock-prediction-tool.vercel.app/",
   },
   {
     iconUrl: threads,
@@ -146,7 +178,8 @@ export const projects = [
     name: "Mr.Chef | Culinary Express App",
     description:
       "Developed an end-to-end full-stack application revolutionizing food delivery with secure Firebase authentication, dynamic product display via Mr.Chef's API, optimized search with debouncing, and seamless Razorpay integration for secure payments.",
-    link: "https://github.com/Dev-42/Mr.Chef-Culinary-Express-App",
+    githubLink: "https://github.com/Dev-42/Mr.Chef-Culinary-Express-App",
+    link: "https://ephemeral-smakager-9f78ae.netlify.app/",
   },
   {
     iconUrl: car,
@@ -154,7 +187,8 @@ export const projects = [
     name: "HealthKart 2.0",
     description:
       "I led a team of 5 to build HealthKart 2.0, a one-stop destination for medicines, supplements, and fitness equipment.",
-    link: "https://github.com/Swagh001/HealthKart-Clone",
+    githubLink: "https://github.com/Swagh001/HealthKart-Clone",
+    link: "https://graceful-speculoos-4458b2.netlify.app/index.html",
   },
   {
     iconUrl: snapgram,
@@ -162,7 +196,9 @@ export const projects = [
     name: "Express 2.0",
     description:
       "This web app was built by a total of 5 people to serve daily fashion requirement of the youth at their doorstep.",
-    link: "https://github.com/muskanthapa2000/express.com_shopping_website_clone",
+    githubLink:
+      "https://github.com/muskanthapa2000/express.com_shopping_website_clone",
+    link: "https://express-clone-ecomm-site.netlify.app/",
   },
   {
     iconUrl: estate,
@@ -170,6 +206,7 @@ export const projects = [
     name: "Personal Portfolio",
     description:
       "Developed a web application using react,react-router and threeJS to showcase my skills and experience.",
-    link: "https://github.com/Dev-42/Portfolio-Website",
+    githubLink: "https://github.com/Dev-42/Portfolio-Website",
+    link: "",
   },
 ];
