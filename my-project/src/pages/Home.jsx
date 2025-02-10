@@ -116,7 +116,7 @@ const Home = () => {
         />
 
         <motion.div
-          className="text-center p-4"
+          className="text-center"
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           transition={{ duration: 1.5 }}
