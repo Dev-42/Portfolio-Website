@@ -3,6 +3,7 @@ import { NavLink, useLocation } from "react-router-dom";
 import { FiMenu, FiX } from "react-icons/fi"; // For icons
 import { FiDownload } from "react-icons/fi"; // Download icon
 import DarkModeToggle from "./ToggleButton";
+import { motion } from "framer-motion";
 const Navbar = () => {
   const [isPlaying, setIsPlaying] = useState(false);
   const [isMenuOpen, setIsMenuOpen] = useState(false);
@@ -77,37 +78,60 @@ const Navbar = () => {
 
       {/* Mobile Navigation */}
       {isMenuOpen && (
-        <nav className="md:hidden mt-4 flex flex-col items-center gap-4 text-lg font-medium bg-gray-800 py-4 rounded-lg">
-          {["About", "Projects", "Contact"].map((item) => (
-            <NavLink
-              key={item}
-              to={`/${item.toLowerCase()}`}
-              className={({ isActive }) =>
-                isActive
-                  ? "text-blue-400"
-                  : "text-gray-300 hover:text-blue-300 transition-colors"
-              }
-              onClick={toggleMenu} // Close menu on link click
-            >
-              {item}
-            </NavLink>
-          ))}
+        <div className="fixed inset-0 z-50 flex flex-col">
+          {/* Background Overlay */}
+          <div
+            className="absolute inset-0 bg-gray-900 bg-opacity-80 backdrop-blur-md transition-opacity duration-500"
+            onClick={toggleMenu} // Closes menu when the background is clicked
+          ></div>
 
-          {/* Mobile Download Resume Button */}
-          <a
-            href="https://drive.google.com/uc?export=download&id=1gy1qNTmWaQ36PFICkdiIWgqDNJzWACM7"
-            download="Dev_Bhattacharya_Resume.pdf"
-            className="relative inline-flex items-center gap-3 px-6 py-3 text-sm md:text-base font-semibold text-white bg-gradient-to-r from-blue-500 to-purple-600 rounded-full shadow-lg transition-all duration-300 hover:scale-105 hover:shadow-xl"
-            style={{
-              background: "linear-gradient(90deg, #3b82f6, #9333ea)",
-              borderImageSlice: 1,
-            }}
-          >
-            <div className="absolute inset-0 rounded-full bg-gradient-to-r from-blue-400 to-cyan-400 opacity-50 blur-md"></div>
-            <FiDownload className="text-xl transition-transform duration-300 group-hover:translate-y-[-2px] group-hover:scale-110" />
-            <span>Resume</span>
-          </a>
-        </nav>
+          {/* Menu Content */}
+          <div className="relative flex flex-col bg-black">
+            {/* Close Button */}
+            <button
+              className="text-white text-3xl self-end p-4 hover:text-red-500 transition-transform transform hover:rotate-90"
+              onClick={toggleMenu}
+              aria-label="Close Menu"
+            >
+              <FiX />
+            </button>
+
+            {/* Navigation Menu */}
+            <motion.nav
+              initial={{ x: "100%" }}
+              animate={{ x: 0 }}
+              exit={{ x: "100%" }}
+              transition={{ duration: 0.3, ease: "easeOut" }}
+              className="flex flex-col items-center gap-8"
+              style={{ background: "black", padding: "20px" }}
+            >
+              {["About", "Projects", "Contact"].map((item) => (
+                <NavLink
+                  key={item}
+                  to={`/${item.toLowerCase()}`}
+                  className={({ isActive }) =>
+                    isActive
+                      ? "w-10/12 text-center py-3 rounded-full text-white bg-gradient-to-r from-blue-500 to-purple-600 font-bold shadow-lg"
+                      : "w-10/12 text-center py-3 rounded-full text-gray-200 bg-gray-800 hover:bg-gradient-to-r from-blue-400 to-blue-600 font-medium shadow-md transition-all"
+                  }
+                  onClick={toggleMenu}
+                >
+                  {item}
+                </NavLink>
+              ))}
+
+              {/* Resume Button */}
+              <a
+                href="https://drive.google.com/uc?export=download&id=1gy1qNTmWaQ36PFICkdiIWgqDNJzWACM7"
+                download="Dev_Bhattacharya_Resume.pdf"
+                className="relative w-10/12 text-center py-3 rounded-full text-white font-bold shadow-lg transition-transform transform hover:scale-105 bg-gradient-to-r from-green-500 to-teal-600 before:absolute before:inset-0 before:rounded-full before:opacity-40 before:blur-md before:bg-gradient-to-r before:from-green-500 before:to-teal-600 before:transition-opacity before:duration-300 hover:before:opacity-80"
+              >
+                <FiDownload className="inline-block mr-2 text-xl" />
+                Download Resume
+              </a>
+            </motion.nav>
+          </div>
+        </div>
       )}
     </header>
   );
