@@ -2,7 +2,7 @@ import { Canvas } from "@react-three/fiber";
 import { Suspense, useState, useRef, useEffect } from "react";
 import { Helmet } from "react-helmet-async";
 import { soundon, soundoff } from "../assets/icons";
-import sakura from "../assets/sakura.mp3";
+import sakura from "../assets/finalAudio.mp3";
 import ProfileImage from "../assets/ProfileImage.jpg"; // Replace with your image path
 import { motion } from "framer-motion";
 import { loadFull } from "tsparticles";
