@@ -82,7 +82,7 @@ const Contact = () => {
           type: "spring",
           stiffness: 80,
         }}
-        className="w-full md:w-1/2 text-center md:text-left space-y-6"
+        className="w-full md:w-1/2 text-center md:text-left space-y-6 mt-[50px] lg:mt-0"
       >
         <motion.h1
           initial={{ opacity: 0, y: -50, scale: 0.5 }}
