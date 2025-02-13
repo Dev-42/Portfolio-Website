@@ -341,10 +341,10 @@ const Home = () => {
           </motion.div>
 
           {/* Animated Button */}
-          <div className="flex gap-6 mt-[22px]">
+          <div className="flex sm:flex-row gap-4 sm:gap-6 mt-6">
             {/* Explore My Work Button */}
             <motion.button
-              className="flex items-center justify-center gap-2 px-6 py-3 bg-gradient-to-r from-blue-500 to-blue-800 text-white rounded-lg shadow-md text-lg font-semibold"
+              className="flex items-center justify-center gap-2 px-4 py-2 sm:px-6 sm:py-3 bg-gradient-to-r from-blue-500 to-blue-800 text-white rounded-lg shadow-md text-base sm:text-lg font-semibold"
               animate={{
                 scale: [1, 1.05, 1],
                 boxShadow: ["0px 0px 10px #FFD700", "0px 0px 20px #FF00FF"],
@@ -361,12 +361,12 @@ const Home = () => {
               onClick={() => navigate("/about")}
             >
               Explore More{" "}
-              <FiArrowRightCircle className="w-5 h-5 animate-bounce" />
+              <FiArrowRightCircle className="w-4 h-4 sm:w-5 sm:h-5 animate-bounce" />
             </motion.button>
 
             {/* Contact Button */}
             <motion.button
-              className="flex items-center justify-center gap-2 px-6 py-3 bg-gradient-to-r from-green-500 to-teal-600 text-white rounded-lg shadow-md text-lg font-semibold"
+              className="flex items-center justify-center gap-2 px-4 py-2 sm:px-6 sm:py-3 bg-gradient-to-r from-green-500 to-teal-600 text-white rounded-lg shadow-md text-base sm:text-lg font-semibold"
               animate={{
                 scale: [1, 1.05, 1],
                 boxShadow: [
@@ -386,7 +386,8 @@ const Home = () => {
               }}
               onClick={handleWhatsAppClick}
             >
-              <IoLogoWhatsapp className="w-5 h-5 animate-pulse" /> Contact Me
+              <IoLogoWhatsapp className="w-4 h-4 sm:w-5 sm:h-5 animate-pulse" />{" "}
+              Contact Me
             </motion.button>
           </div>
         </section>
