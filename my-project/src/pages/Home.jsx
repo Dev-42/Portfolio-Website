@@ -391,7 +391,7 @@ const Home = () => {
             </motion.button>
           </div>
         </section>
-        <div className="absolute bottom-[57rem] md:bottom-4 left-4 z-30">
+        <div className="absolute bottom-[43rem] md:bottom-4 left-4 z-30">
           <motion.img
             src={!isPlaying ? soundon : soundoff}
             alt="sound"
