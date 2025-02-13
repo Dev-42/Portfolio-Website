@@ -186,7 +186,7 @@ const About = () => {
           </motion.div>
         </h1>
         <motion.div
-          className="mt-5 flex flex-wrap gap-3 text-slate-500 leading-relaxed text-center"
+          className="mt-5 flex flex-wrap gap-[6px] text-slate-500 md:leading-relaxed text-center"
           initial="hidden"
           animate="visible"
           variants={containerVariants}
@@ -201,7 +201,7 @@ const About = () => {
             <motion.span
               key={index}
               variants={wordVariants}
-              className="inline-block mx-1 md:text-[20px]"
+              className="inline-block md:mx-1 md:text-[20px]"
               whileHover={{
                 scale: 1.2,
                 color: "#1d4ed8", // Blue on hover
