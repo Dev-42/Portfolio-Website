@@ -186,7 +186,7 @@ const About = () => {
           </motion.div>
         </h1>
         <motion.div
-          className="mt-5 flex flex-wrap gap-[6px] text-slate-500 md:leading-relaxed text-center"
+          className="mt-5 flex flex-wrap gap-[6px] text-slate-500 leading-relaxed text-center"
           initial="hidden"
           animate="visible"
           variants={containerVariants}
